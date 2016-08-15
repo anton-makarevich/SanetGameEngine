@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>68d02e2d-3786-4daf-aeda-adea9d57ae4b</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SanetGameEngineShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Animations\AnimationBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Animations\FrameAnimation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Animations\FrameAnimationMulti.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Animations\OpacityAnimation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Animations\PathAnimation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Animations\PathAnimationPoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Animations\SoundAnimation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseObjects\GameObject2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseObjects\GameObject3D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseObjects\RenderContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cameras\BaseCamera.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cameras\PerspectiveCamera.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\KeyboardStick.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ScreenStick.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Writer\DrawingModes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Writer\DrawingSurface.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Writer\Stroke.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\GameObjectOrientation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\InputFormat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Geometry\Line.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Input\TouchInput.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IKeyboardTracker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ITextElement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\LocalizerExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\ResourceModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Particles\ExplosingObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Particles\ExplosionProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Particles\LightningBolt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Particles\LightningLine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Particles\LightningObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Particles\LightningProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Particles\ParticleController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Particles\SmokeProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Particles\SmokingObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SceneManager\GameScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SceneManager\GameSceneModes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SceneManager\SceneChangedEventsArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SceneManager\SceneManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SceneManager\SceneTranslationModes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sounds\SoundsProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Texts\CustomFontSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Texts\FontProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Texts\FontProviderStandard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Texts\KeyboardManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Texts\TextAlignment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Texts\TextBlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Texts\TextBlockStandard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Texts\TextLine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Texts\TextLineStandard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Texts\TextPrinter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\BGContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\BGPanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\GameAnimatedSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\GameButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\GameModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\GameSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\GameSpriteRepeatable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\GameSpriteTouchable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\GameTextButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\GameToggleButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\LineSegment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\ListSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\Photo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\PointSegment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\ScrollBar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\ScrollingPanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\TextField.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UIObjects\TextFieldStandard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\GameTimer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\Helpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\XMLLoader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Input\TouchInput.cs.orig" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+syntax: glob
+*/bin/*
+*/obj/*
+*/Bin/*
+*.rar
+packages/*
+*.suo
+UpgradeLog2.htm
+UpgradeLog*
+*.orig

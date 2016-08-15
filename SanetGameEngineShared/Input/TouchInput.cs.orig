@@ -1,0 +1,471 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Sanet.XNAEngine
+{
+    public class TouchInput : IGameObject
+    {
+        #region Constructor
+        public TouchInput(GameObject2D parent)
+            : base()
+        {
+            _parent = parent;
+            DetectLeaveBorder = true;
+        }
+        #endregion
+
+        #region Events
+        public event Action OnClick;
+        public event Action OnEnter;
+        public event Action OnLeave;
+        #endregion
+
+        #region Fields
+        const int MinimalDistance = 1;
+        public const int MaximumClickTime = 900;
+
+        static bool _abortLoop;
+
+        GameObject2D _parent;
+        private bool _isPressed;
+
+        //1st point
+        private int _touchId;
+        Vector2 _initialPoint;
+        Vector2 _pressPoint;
+
+        //second point (if has)
+        private int _touchId2;
+        Vector2 _initialPoint2;
+        Vector2 _pressPoint2;
+
+        DateTime _enterTime;
+
+        int _touchCounter ;
+
+        DateTime _clickTime;
+
+        bool _isCanceled;
+
+        Vector2 _lastDistance;
+        #endregion
+
+        #region Properties
+        public int PressTime
+        {
+            get
+            {
+                if (_clickTime <= _enterTime)
+                    return (int)(DateTime.Now - _enterTime).TotalMilliseconds;
+                return (int)(_clickTime - _enterTime).TotalMilliseconds;
+            }
+        }
+        
+
+        public Vector2 Direction { get; private set; }
+        public Vector2 Distance { get; private set; }
+
+        public Vector2 LastDistance
+        {
+            get
+            {
+                //if (Distance == Vector2.Zero)
+                //    return Distance;
+                return _lastDistance;
+            }
+        }
+
+        public Vector2 Direction2 { get; private set; }
+        public Vector2 Distance2 { get; private set; }
+
+        public int TouchPoints
+        {
+            get
+            {
+                return _touchCounter;
+            }
+        }
+
+        public bool DetectLeaveBorder { get; set; }
+
+        //whether we use local (unloadeable) or global (shared) content manager
+        public bool IsLocalContent { get; set; }
+
+        public bool IsPressed 
+        { get
+        {
+            return _isPressed;
+        }
+            private set
+            {
+                _isPressed = value;
+                
+                    PressPointPrevious = Vector2.Zero;
+                    PressPoint = Vector2.Zero;
+                
+            }
+        }
+
+        public Vector2 PressPoint
+        {
+            get
+            {
+                return _pressPoint;
+            }
+            private set
+            {
+                
+                    if (PressPointPrevious != _pressPoint)
+                        PressPointPrevious = _pressPoint;
+                    _pressPoint = value;
+                
+            }
+        }
+
+        public Vector2 PressPoint2
+        {
+            get
+            {
+                return _pressPoint2;
+            }
+            private set
+            {
+                if (PressPointPrevious2 != _pressPoint2)
+                    PressPointPrevious2 = _pressPoint2;
+                _pressPoint2 = value;
+            }
+        }
+
+        public Vector2 PressPointPrevious
+        { get; set; }
+
+        public Vector2 PressPointPrevious2
+        { get; set; }
+
+        public bool CanDraw { get; set; }
+        public bool ForceUpdate { get; set; }
+        public string Tag { get; set; }
+        public string Name { get; set; }
+        public int Z { get; set; }
+        public string CustomContent { get; set; }
+
+        public static bool AbortForLoop
+        {
+            get
+            { return _abortLoop; }
+            set
+            {
+                _abortLoop=value;
+                
+            }
+        }
+        #endregion
+
+        #region Methods
+        public void Update(RenderContext renderContext)
+        {
+            if (!_parent.CanDraw)
+                return;
+
+            if (_isCanceled || AbortForLoop)
+            {
+                _isCanceled = false;
+                if (AbortForLoop && IsPressed)
+                    IsPressed = false;
+                return;
+            }
+            //_lastDistance = Vector2.Zero;
+            var touchStates = renderContext.TouchPanelState;
+            //if were touch inputs
+            int touches = 0;
+            try 
+            {
+                touches = touchStates.Count;
+            }
+            catch(Exception ex)
+            {
+                var t = ex.Message;
+            }
+                        
+            if (touchStates.IsConnected &&  touches> 0)
+            {
+                #region touch, not pressed
+                if (!IsPressed)
+                {
+                    _touchCounter = 0;
+                    foreach (var touchLoc in touchStates)
+                    {
+                        if ((touchLoc.State == TouchLocationState.Pressed || touchLoc.State == TouchLocationState.Moved) && _parent.HitTest(touchLoc.Position, false))
+                        {
+                            IsPressed = true;
+                            if (_touchCounter == 0)
+                            {
+                                _touchId = touchLoc.Id;
+                                PressPoint = touchLoc.Position;
+                                _initialPoint = touchLoc.Position;
+
+
+                                //Entered
+                                if (OnEnter != null) OnEnter();
+                                _enterTime = DateTime.Now;
+                                _touchCounter++;
+                            }
+                            if (_touchCounter == 1)
+                            {
+                                if (PressPoint == touchLoc.Position || touchLoc.Position==Vector2.Zero)
+                                    continue;
+                                _touchId2 = touchLoc.Id;
+                                PressPoint2 = touchLoc.Position;
+                                _initialPoint2 = touchLoc.Position;
+                                _touchCounter++;
+                                break;
+                            }
+                        }
+                    }
+
+                }
+                #endregion
+                #region Touch pressed
+                else //pressed
+                {
+                    var touchLoc = touchStates.FirstOrDefault(tLocation => tLocation.Id == _touchId);
+
+                    if (touchLoc == null || touchLoc.State == TouchLocationState.Invalid || (DetectLeaveBorder && !_parent.HitTest(touchLoc.Position, false)))
+                    {
+                        _touchId = -1;
+                       
+                        //Left
+                        if (OnLeave != null) 
+                            OnLeave();
+                        
+                        IsPressed = false;
+                         Direction =_lastDistance=Distance = Vector2.Zero;
+                       
+                    }
+                    else
+                    {
+                        if (touchLoc.State == TouchLocationState.Released)
+                        {
+                            _touchId = -1;
+                            
+                            //Clicked
+                            _clickTime = DateTime.Now;
+                            if ((_clickTime - _enterTime).TotalMilliseconds < MaximumClickTime)
+                            {
+                                if (OnClick != null && !AbortForLoop) OnClick();
+                            }
+                            else
+                            {
+                                if (OnLeave != null) OnLeave();
+                            }
+                            IsPressed = false;
+                            Direction = _lastDistance = Distance = Vector2.Zero;
+                        }
+                        else
+                        {
+                            PressPoint = touchLoc.Position;
+                            var distance = PressPoint - PressPointPrevious;
+                            var length = distance.Length();
+                            if (length > MinimalDistance)
+                                SetDirection(distance, 1);
+                            /*else
+                                _lastDistance = distance;*/
+
+                        }
+                    }
+
+                    #region second point
+                    //support for second touch point
+                    //TODO: actualy it's awfull, need to refactor to make it more generic
+                    if (_touchCounter == 1 && touchStates.Count>1)
+                    {
+                        var tc = touchStates.FirstOrDefault(f => f.Id != _touchId && f.State!= TouchLocationState.Invalid && f.Position != Vector2.Zero);
+                        if (tc != null)
+                        {
+                            _touchCounter = 2;
+                            _touchId2 = tc.Id;
+                        }
+                    }
+
+                    if (_touchCounter == 2)
+                    {
+                        var touchLoc2 = touchStates.FirstOrDefault(tLocation => tLocation.Id == _touchId2);
+
+                        if (touchLoc2 == null || touchLoc2.State == TouchLocationState.Invalid || (DetectLeaveBorder && !_parent.HitTest(touchLoc2.Position, false)))
+                        {
+                            _touchId2 = -1;
+                            Direction2 = Vector2.Zero;
+                            Distance2 = Vector2.Zero;
+                            _touchCounter = 1;
+                        }
+                        else
+                        {
+                            if (touchLoc2.State == TouchLocationState.Released)
+                            {
+                                _touchId2 = -1;
+                                
+                                Direction2 = Vector2.Zero;
+                                Distance2 = Vector2.Zero;
+                                _touchCounter = 1;
+                            }
+                            else
+                            {
+                                PressPoint2 = touchLoc2.Position;
+                                var distance = PressPoint2 - _initialPoint2;
+
+                                if (distance.Length() > MinimalDistance)
+                                    SetDirection(distance,2);
+                                else
+                                    Distance2 = Vector2.Zero;
+
+                            }
+                        }
+                    }
+                    #endregion
+                }
+                #endregion
+            }
+            //no touches - let's check mouse
+            #region Mouse
+            else
+            {
+                _touchCounter = 1;
+                if (!IsPressed)
+                {
+                    //mouse support for Windows 8
+                    var mouse = Mouse.GetState();
+                    if (mouse.LeftButton == ButtonState.Pressed)
+                    {
+                        var mousePos = new Vector2(mouse.X, mouse.Y);
+                        if (_parent.HitTest(mousePos, false))
+                        {
+                            IsPressed = true;
+                            //Entered
+                            if (OnEnter != null) OnEnter();
+                            _enterTime = DateTime.Now;
+                            PressPoint = mousePos;
+                            _initialPoint = mousePos;
+                        }
+                    }
+                }
+                else
+                {
+                    //mouse support for Windows 8
+                    var mouse = Mouse.GetState();
+                    var mousePos = new Vector2(mouse.X, mouse.Y);
+                    if (DetectLeaveBorder && !_parent.HitTest(mousePos, false))
+                    {
+                        IsPressed = false;
+                        //Left
+                        Direction = Vector2.Zero;
+                        Distance = Vector2.Zero;
+                        if (OnLeave != null) OnLeave();
+                    }
+                    else
+                    {
+                        if (mouse.LeftButton == ButtonState.Released)
+                        {
+                            IsPressed = false;
+                            //Clicked
+                            Direction = Vector2.Zero;
+                            Distance = Vector2.Zero;
+                            _clickTime = DateTime.Now;
+                            if ((_clickTime - _enterTime).TotalMilliseconds < MaximumClickTime)
+                            {
+                                if (OnClick != null && !AbortForLoop) OnClick();
+                            }
+                            else
+                            {
+                                if (OnLeave != null) OnLeave();
+                            }
+                            
+                        }
+                        else
+                        {
+                            PressPoint = mousePos;
+                            var distance = PressPoint - PressPointPrevious;
+
+                            if (distance.Length() > MinimalDistance)
+                                SetDirection(distance,1);
+                            else
+                                Distance = Vector2.Zero;
+                        }
+                    }
+                }
+            }
+            #endregion
+        }
+
+        void SetDirection(Vector2 distance, int point)
+        {
+            if (point==1)
+            {
+                Distance += distance;
+                _lastDistance=distance;
+            }
+            else
+                Distance2 += distance;
+
+            if (distance.Length() > 5)//TODO: '5' should be adjustable 'Sensivity' property
+            {
+                float x = 0;
+                float y = 0;
+                float maxValue = 15;
+                var dx = Math.Abs(distance.X) / maxValue;
+                var dy = Math.Abs(distance.Y) / maxValue;
+                /*if (Math.Abs(distance.X) > Math.Abs(distance.Y))
+                {*/
+                x = (distance.X < 0) ? -dx : dx;
+                /*}
+                else
+                {*/
+                y = (distance.Y < 0) ? -dy : dy;
+                //}
+                if (point == 1)
+                {
+                    Direction = new Vector2(x, y);
+                    _initialPoint = PressPoint;
+                }
+                else
+                {
+                    Direction2 = new Vector2(x, y);
+                    _initialPoint2 = PressPoint2;
+                }
+            }
+        }
+
+        public void Initialize() { }
+        public void LoadContent(ContentManager contentManager, bool isLocal) { }
+        public void Draw(RenderContext renderContext) { }
+        public void AddChild(IGameObject gameObject) { }
+
+        public void CancelTouch()
+        {
+            if (_isPressed)
+            {
+                _isCanceled = true;
+                _isPressed = false;
+                if (OnLeave != null)
+                    OnLeave();
+            }
+        }
+        #endregion
+
+        #region Static Methods
+        public static bool IsTouchAvailable()
+        {
+#if NETFX_CORE
+            //TODO: implement real check to see if we are using real keaboard or on-screen one
+            return false;
+#endif
+            return true;
+        }
+        #endregion
+    }
+}

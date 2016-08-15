@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{38655429-A3FD-41B4-9DD5-8274C33C3985}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SanetGameEngineIOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>SanetGameEngineIOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\xnaengine\animations\AnimationBase.cs">
+      <Link>Engine\Animations\AnimationBase.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\animations\FrameAnimation.cs">
+      <Link>Engine\Animations\FrameAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\animations\FrameAnimationMulti.cs">
+      <Link>Engine\Animations\FrameAnimationMulti.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\animations\OpacityAnimation.cs">
+      <Link>Engine\Animations\OpacityAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\animations\PathAnimation.cs">
+      <Link>Engine\Animations\PathAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\animations\PathAnimationPoint.cs">
+      <Link>Engine\Animations\PathAnimationPoint.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\animations\SoundAnimation.cs">
+      <Link>Engine\Animations\SoundAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\baseobjects\GameObject2D.cs">
+      <Link>Engine\BaseObjects\GameObject2D.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\baseobjects\GameObject3D.cs">
+      <Link>Engine\BaseObjects\GameObject3D.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\baseobjects\RenderContext.cs">
+      <Link>Engine\BaseObjects\RenderContext.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\cameras\BaseCamera.cs">
+      <Link>Engine\Cameras\BaseCamera.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\cameras\PerspectiveCamera.cs">
+      <Link>Engine\Cameras\PerspectiveCamera.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\controls\KeyboardStick.cs">
+      <Link>Engine\Controls\KeyboardStick.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\controls\ScreenStick.cs">
+      <Link>Engine\Controls\ScreenStick.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\controls\writer\DrawingModes.cs">
+      <Link>Engine\Controls\Writer\DrawingModes.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\controls\writer\DrawingSurface.cs">
+      <Link>Engine\Controls\Writer\DrawingSurface.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\controls\writer\Stroke.cs">
+      <Link>Engine\Controls\Writer\Stroke.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\enums\GameObjectOrientation.cs">
+      <Link>Engine\Enums\GameObjectOrientation.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\enums\InputFormat.cs">
+      <Link>Engine\Enums\InputFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\geometry\Line.cs">
+      <Link>Engine\Geometry\Line.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\input\TouchInput.cs">
+      <Link>Engine\Input\TouchInput.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\interfaces\IGameObject.cs">
+      <Link>Engine\Interfaces\IGameObject.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\interfaces\IKeyboardTracker.cs">
+      <Link>Engine\Interfaces\IKeyboardTracker.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\interfaces\ITextElement.cs">
+      <Link>Engine\Interfaces\ITextElement.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\localization\LocalizerExtensions.cs">
+      <Link>Engine\Localization\LocalizerExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\localization\ResourceModel.cs">
+      <Link>Engine\Localization\ResourceModel.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\scenemanager\GameScene.cs">
+      <Link>Engine\SceneManager\GameScene.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\scenemanager\GameSceneModes.cs">
+      <Link>Engine\SceneManager\GameSceneModes.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\scenemanager\SceneChangedEventsArgs.cs">
+      <Link>Engine\SceneManager\SceneChangedEventsArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\scenemanager\SceneManager.cs">
+      <Link>Engine\SceneManager\SceneManager.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\scenemanager\SceneTranslationModes.cs">
+      <Link>Engine\SceneManager\SceneTranslationModes.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\sounds\SoundsProvider.cs">
+      <Link>Engine\Sounds\SoundsProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\CustomFontSprite.cs">
+      <Link>Engine\Texts\CustomFontSprite.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\FontProvider.cs">
+      <Link>Engine\Texts\FontProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\XNAEngine\Texts\FontProviderStandard.cs">
+      <Link>Engine\Texts\FontProviderStandard.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\KeyboardManager.cs">
+      <Link>Engine\Texts\KeyboardManager.cs</Link>
+    </Compile>
+    <Compile Include="..\XNAEngine\Texts\KeyboardTracker\iOS\KeyboardTracker.cs">
+      <Link>Engine\Texts\KeyboardTracker\KeyboardTracker.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\TextAlignment.cs">
+      <Link>Engine\Texts\TextAlignment.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\TextBlock.cs">
+      <Link>Engine\Texts\TextBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\XNAEngine\Texts\TextBlockStandard.cs">
+      <Link>Engine\Texts\TextBlockStandard.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\TextLine.cs">
+      <Link>Engine\Texts\TextLine.cs</Link>
+    </Compile>
+    <Compile Include="..\XNAEngine\Texts\TextLineStandard.cs">
+      <Link>Engine\Texts\TextLineStandard.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\TextPrinter.cs">
+      <Link>Engine\Texts\TextPrinter.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\BGContainer.cs">
+      <Link>Engine\UIObjects\BGContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\BGPanel.cs">
+      <Link>Engine\UIObjects\BGPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameAnimatedSprite.cs">
+      <Link>Engine\UIObjects\GameAnimatedSprite.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameButton.cs">
+      <Link>Engine\UIObjects\GameButton.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameModel.cs">
+      <Link>Engine\UIObjects\GameModel.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameSprite.cs">
+      <Link>Engine\UIObjects\GameSprite.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameSpriteRepeatable.cs">
+      <Link>Engine\UIObjects\GameSpriteRepeatable.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameSpriteTouchable.cs">
+      <Link>Engine\UIObjects\GameSpriteTouchable.cs</Link>
+    </Compile>
+    <Compile Include="..\XNAEngine\UIObjects\GameTextButton.cs">
+      <Link>Engine\UIObjects\GameTextButton.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameToggleButton.cs">
+      <Link>Engine\UIObjects\GameToggleButton.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\LineSegment.cs">
+      <Link>Engine\UIObjects\LineSegment.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\ListSelector.cs">
+      <Link>Engine\UIObjects\ListSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\Photo.cs">
+      <Link>Engine\UIObjects\Photo.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\PointSegment.cs">
+      <Link>Engine\UIObjects\PointSegment.cs</Link>
+    </Compile>
+    <Compile Include="..\XNAEngine\UIObjects\ScrollBar.cs">
+      <Link>Engine\UIObjects\ScrollBar.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\ScrollingPanel.cs">
+      <Link>Engine\UIObjects\ScrollingPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\TextField.cs">
+      <Link>Engine\UIObjects\TextField.cs</Link>
+    </Compile>
+    <Compile Include="..\XNAEngine\UIObjects\TextFieldStandard.cs">
+      <Link>Engine\UIObjects\TextFieldStandard.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\utils\Extensions.cs">
+      <Link>Engine\Utils\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\XNAEngine\Utils\GameTimer.cs">
+      <Link>Engine\Utils\GameTimer.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\utils\Helpers.cs">
+      <Link>Engine\Utils\Helpers.cs</Link>
+    </Compile>
+    <Compile Include="..\XNAEngine\Utils\iOS\DispatcherHelper.cs">
+      <Link>Engine\Utils\DispatcherHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\utils\XMLLoader.cs">
+      <Link>Engine\Utils\XMLLoader.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework, Version=3.4.0.459, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Karsten\PronuncationApp\packages\MonoGame.Framework.iOS.3.4.0.459\lib\XamariniOS\MonoGame.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+<<<<<<< local
+  <ItemGroup>
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+=======
+>>>>>>> other
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>

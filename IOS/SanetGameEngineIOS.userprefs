@@ -1,0 +1,13 @@
+﻿<Properties StartupItem="SanetGameEngineIOS.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.iPad (Anton)" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../XNAEngine/UIObjects/ScrollingPanel.cs">
+    <Files>
+      <File FileName="../XNAEngine/Input/TouchInput.cs" Line="187" Column="8" />
+      <File FileName="../XNAEngine/UIObjects/ScrollingPanel.cs" Line="738" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

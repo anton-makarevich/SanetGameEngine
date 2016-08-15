@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{F1F195AD-8A40-4628-BD14-ABC29A8105D1}</ProjectGuid>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Windows Phone</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SanetGameEngineWP7</RootNamespace>
+    <AssemblyName>SanetGameEngineWP7</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <XnaRefreshLevel>1</XnaRefreshLevel>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaCrossPlatformGroupID>3c0c00e5-510c-4c9f-87a1-dbb92164c537</XnaCrossPlatformGroupID>
+    <XnaOutputType>Library</XnaOutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Windows Phone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Windows Phone\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WINDOWS_PHONE;WP7</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <XnaCompressContent>false</XnaCompressContent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Windows Phone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Windows Phone\Release</OutputPath>
+    <DefineConstants>TRACE;WINDOWS_PHONE;WP7</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <XnaCompressContent>false</XnaCompressContent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework" />
+    <Reference Include="Microsoft.Xna.Framework.Game" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics" />
+    <Reference Include="Microsoft.Xna.Framework.GamerServices" />
+    <Reference Include="Microsoft.Xna.Framework.Input.Touch" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Windows, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Net" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\xnaengine\animations\AnimationBase.cs">
+      <Link>Engine\Animations\AnimationBase.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\animations\FrameAnimation.cs">
+      <Link>Engine\Animations\FrameAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\animations\FrameAnimationMulti.cs">
+      <Link>Engine\Animations\FrameAnimationMulti.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\animations\OpacityAnimation.cs">
+      <Link>Engine\Animations\OpacityAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\animations\PathAnimation.cs">
+      <Link>Engine\Animations\PathAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\animations\PathAnimationPoint.cs">
+      <Link>Engine\Animations\PathAnimationPoint.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\animations\SoundAnimation.cs">
+      <Link>Engine\Animations\SoundAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\baseobjects\GameObject2D.cs">
+      <Link>Engine\BaseObjects\GameObject2D.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\baseobjects\GameObject3D.cs">
+      <Link>Engine\BaseObjects\GameObject3D.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\baseobjects\RenderContext.cs">
+      <Link>Engine\BaseObjects\RenderContext.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\cameras\BaseCamera.cs">
+      <Link>Engine\Cameras\BaseCamera.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\cameras\PerspectiveCamera.cs">
+      <Link>Engine\Cameras\PerspectiveCamera.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\controls\KeyboardStick.cs">
+      <Link>Engine\Controls\KeyboardStick.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\controls\ScreenStick.cs">
+      <Link>Engine\Controls\ScreenStick.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\controls\writer\DrawingModes.cs">
+      <Link>Engine\Controls\Writer\DrawingModes.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\controls\writer\DrawingSurface.cs">
+      <Link>Engine\Controls\Writer\DrawingSurface.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\controls\writer\Stroke.cs">
+      <Link>Engine\Controls\Writer\Stroke.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\enums\GameObjectOrientation.cs">
+      <Link>Engine\Enums\GameObjectOrientation.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\enums\InputFormat.cs">
+      <Link>Engine\Enums\InputFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\geometry\Line.cs">
+      <Link>Engine\Geometry\Line.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\input\TouchInput.cs">
+      <Link>Engine\Input\TouchInput.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\interfaces\IGameObject.cs">
+      <Link>Engine\Interfaces\IGameObject.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\interfaces\IKeyboardTracker.cs">
+      <Link>Engine\Interfaces\IKeyboardTracker.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\interfaces\ITextElement.cs">
+      <Link>Engine\Interfaces\ITextElement.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\localization\LocalizerExtensions.cs">
+      <Link>Engine\Localization\LocalizerExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\localization\ResourceModel.cs">
+      <Link>Engine\Localization\ResourceModel.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\scenemanager\GameScene.cs">
+      <Link>Engine\SceneManager\GameScene.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\scenemanager\GameSceneModes.cs">
+      <Link>Engine\SceneManager\GameSceneModes.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\scenemanager\SceneChangedEventsArgs.cs">
+      <Link>Engine\SceneManager\SceneChangedEventsArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\scenemanager\SceneManager.cs">
+      <Link>Engine\SceneManager\SceneManager.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\scenemanager\SceneTranslationModes.cs">
+      <Link>Engine\SceneManager\SceneTranslationModes.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\sounds\SoundsProvider.cs">
+      <Link>Engine\Sounds\SoundsProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\CustomFontSprite.cs">
+      <Link>Engine\Texts\CustomFontSprite.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\FontProvider.cs">
+      <Link>Engine\Texts\FontProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\KeyboardManager.cs">
+      <Link>Engine\Texts\KeyboardManager.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\keyboardtracker\windows8\KeyboardTracker.cs">
+      <Link>Engine\Texts\KeyboardTracker\KeyboardTracker.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\TextAlignment.cs">
+      <Link>Engine\Texts\TextAlignment.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\TextBlock.cs">
+      <Link>Engine\Texts\TextBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\TextLine.cs">
+      <Link>Engine\Texts\TextLine.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\texts\TextPrinter.cs">
+      <Link>Engine\Texts\TextPrinter.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\BGContainer.cs">
+      <Link>Engine\UIObjects\BGContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\BGPanel.cs">
+      <Link>Engine\UIObjects\BGPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameAnimatedSprite.cs">
+      <Link>Engine\UIObjects\GameAnimatedSprite.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameButton.cs">
+      <Link>Engine\UIObjects\GameButton.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameModel.cs">
+      <Link>Engine\UIObjects\GameModel.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameSprite.cs">
+      <Link>Engine\UIObjects\GameSprite.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameSpriteRepeatable.cs">
+      <Link>Engine\UIObjects\GameSpriteRepeatable.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameSpriteTouchable.cs">
+      <Link>Engine\UIObjects\GameSpriteTouchable.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\GameToggleButton.cs">
+      <Link>Engine\UIObjects\GameToggleButton.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\LineSegment.cs">
+      <Link>Engine\UIObjects\LineSegment.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\ListSelector.cs">
+      <Link>Engine\UIObjects\ListSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\Photo.cs">
+      <Link>Engine\UIObjects\Photo.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\PointSegment.cs">
+      <Link>Engine\UIObjects\PointSegment.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\ScrollingPanel.cs">
+      <Link>Engine\UIObjects\ScrollingPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\uiobjects\TextField.cs">
+      <Link>Engine\UIObjects\TextField.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\utils\Extensions.cs">
+      <Link>Engine\Utils\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\utils\Helpers.cs">
+      <Link>Engine\Utils\Helpers.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\utils\windowsphone\DispatcherHelper.cs">
+      <Link>Engine\Utils\DispatcherHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\xnaengine\utils\XMLLoader.cs">
+      <Link>Engine\Utils\XMLLoader.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
+  <!--
+      To modify your build process, add your task inside one of the targets below and uncomment it. 
+      Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+    -->
+</Project>
