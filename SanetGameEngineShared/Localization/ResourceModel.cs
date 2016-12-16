@@ -1,5 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
+using System.Xml.Linq;
 #if NETFX_CORE
 using Windows.ApplicationModel.Resources.Core;
 using Windows.System.UserProfile;
