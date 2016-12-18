@@ -59,6 +59,7 @@ namespace Sanet.XNAEngine.Animations
             }
             _position = Points[_currentPointIndex].Position;
             IsLooping = xmldata.Attribute("IsLooping").Value.ToLower() == "true";
+            IsClosed = xmldata.Attribute("IsClosed").Value.ToLower() == "true";
             PlayOnClick = xmldata.Attribute("PlayOnClick").Value.ToLower() == "true";
 
         }

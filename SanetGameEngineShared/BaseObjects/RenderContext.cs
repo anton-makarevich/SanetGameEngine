@@ -53,6 +53,14 @@ namespace Sanet.XNAEngine
 
             }
         }
+
+        public float FPSMod
+        {
+            get
+            {
+                return (float)GameTime.ElapsedGameTime.Milliseconds / 30f;
+            }
+        }
         #endregion
 
         #region Methods

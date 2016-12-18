@@ -245,6 +245,11 @@ namespace Sanet.XNAEngine
             return _rootObject.GetChildByTag<T>(tag);
         }
 
+        public T GetFirstSceneObjectOfType<T>() where T : GameObject2D
+        {
+            return _rootObject.Children.FirstOrDefault(f=>f is T) as T;
+        }
+
         public void ReorderChildren()
         {
             _rootObject.ReorderChildren();
@@ -881,18 +886,11 @@ namespace Sanet.XNAEngine
 
             foreach (var sceneObject in SceneObjects3D)
                 sceneObject.Initialize();
-
-            //if (_background == null)
-            //    _background = SceneObjects2D.FirstOrDefault(f => f is GameSprite)as GameSprite;
         }
         
         public virtual void LoadContent(ContentManager contentManager)
         {
             _rootObject.LoadContent(contentManager, false);
-            //foreach (var sceneObject in _rootObject.Children)
-            //{
-            //    sceneObject.LoadContent(contentManager,false);
-            //}
 
             foreach (var sceneObject in SceneObjects3D)
             { sceneObject.LoadContent(contentManager); }
