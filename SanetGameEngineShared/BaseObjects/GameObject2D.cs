@@ -322,7 +322,7 @@ namespace Sanet.XNAEngine
             LocalRotationInRad = MathHelper.ToRadians(rotation);
         }
 
-        public void Translate(string pos)
+        public virtual void Translate(string pos)
         {
             var coords = pos.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
             if (coords.Length==2)
@@ -335,12 +335,12 @@ namespace Sanet.XNAEngine
             }
         }
 
-        public void Translate(float posX, float posY)
+        public virtual void Translate(float posX, float posY)
         {
             Translate(new Vector2(posX, posY));
         }
 
-        public void Translate(Vector2 position)
+        public virtual void Translate(Vector2 position)
         {
             if (DeviceScalingOrientation== GameObjectOrientation.Horizontal)
 				position.Y = position.Y * (float)Math.Pow(SceneManager.RenderContext.DeviceScale.Y / SceneManager.RenderContext.DeviceScale.X,2);
@@ -420,6 +420,11 @@ namespace Sanet.XNAEngine
         {
             foreach (var child in Children)
                 child.Unload();
+        }
+   
+        public void ReorderByZ()
+        {
+            Children = Children.OrderBy(f => f.Z).ToList();
         }
 
         public virtual void Update(RenderContext renderContext)

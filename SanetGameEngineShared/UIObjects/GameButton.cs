@@ -109,6 +109,14 @@ namespace Sanet.XNAEngine
             }
         }
 
+        public bool IsPressed
+        {
+            get
+            {
+                return _touchInput.IsPressed;
+            }
+        }
+
         public bool ForcePressed
         { get; set; }
 
