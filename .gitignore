@@ -1,7 +1,8 @@
 .hg/
 packages/
-*/obj/*
-*/bin/*
+obj/
+bin/
 *.suo
 *.user
 *.bak
+.idea/
