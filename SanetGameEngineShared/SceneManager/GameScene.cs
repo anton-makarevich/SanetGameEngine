@@ -213,11 +213,7 @@ namespace Sanet.XNAEngine
         }
         public void AddSceneObject(IGameObject sceneObject)
         {
-#if NETFX_CORE
-            if (typeof(GameObject2D).GetTypeInfo().IsAssignableFrom(sceneObject.GetType().GetTypeInfo()))
-#else
             if (typeof(GameObject2D).IsAssignableFrom(sceneObject.GetType()))
-#endif
             {
                 AddSceneObject((GameObject2D)sceneObject);
             }
@@ -361,15 +357,7 @@ namespace Sanet.XNAEngine
             }
 
 
-            if (typeof(GameSprite)
-#if NETFX_CORE
-                .GetTypeInfo()
-#endif
-                .IsAssignableFrom(rv.GetType()
-#if NETFX_CORE
-                .GetTypeInfo()
-#endif
-))
+            if (typeof(GameSprite).IsAssignableFrom(rv.GetType()))
             {
                 //if object is inherited from GameSprite we can look for Animations
                 //standard animations

@@ -233,13 +233,7 @@ namespace Sanet.XNAEngine
                     if (_text.Text != TipText)
                     {
                         _text.Text = TipText;
-#if WP7
-                    var cv = FontColor.ToVector4();
-                    cv.W = 0.6f;
-                    _text.TextColor = new Color(cv);
-#else
                         _text.TextColor = new Color(FontColor, 0.6f);
-#endif
                         //var sc = (_bg.LocalScale.X * FontSize) / (_text.LineSize.X);
                         //sc = Math.Min(0.75f, sc);
                         _text.FontScale = FontSize * 0.8f;

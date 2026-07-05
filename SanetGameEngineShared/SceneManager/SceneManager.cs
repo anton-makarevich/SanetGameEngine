@@ -175,20 +175,12 @@ namespace Sanet.XNAEngine
         }
 
 
-        public static bool SetActiveScene(string name, SceneTranslationModes mode,float translationSpeed
-#if !WP7
-            =3400
-#endif
-            )
+        public static bool SetActiveScene(string name, SceneTranslationModes mode, float translationSpeed = 3400)
         {
             return SetActiveScene(name, true, mode,translationSpeed);
         }
 
-        public static bool SetActiveScene(string name, bool rememberThis, SceneTranslationModes mode,float translationSpeed
-#if !WP7
-            =3400
-#endif
-            )
+        public static bool SetActiveScene(string name, bool rememberThis, SceneTranslationModes mode, float translationSpeed = 3400)
         {
             TranslationSpeed = translationSpeed;
             TranslationMode = mode;
@@ -206,11 +198,7 @@ namespace Sanet.XNAEngine
             return rv;
         }
 
-        public static void SetModalScene(string name, SceneTranslationModes mode, float translationSpeed
-#if !WP7
- = 3400
-#endif
-)
+        public static void SetModalScene(string name, SceneTranslationModes mode, float translationSpeed = 3400)
         {
             TranslationSpeed = translationSpeed;
             TranslationMode = mode;

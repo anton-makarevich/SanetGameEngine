@@ -4,59 +4,9 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Xml.Linq;
-#if NETFX_CORE
-using Windows.ApplicationModel.Resources.Core;
-using Windows.System.UserProfile;
-#endif
+
 namespace Sanet.XNAEngine.Localization
 {
-#if NETFX_CORE
-    public class ResourceModel
-    {
-        public ResourceContext ResContext = new ResourceContext();
-        ResourceMap resourceStringMap;
-
-        public ResourceModel(string[] locales)
-        {
-            ResContext.Languages = GlobalizationPreferences.Languages;
-            resourceStringMap = ResourceManager.Current.MainResourceMap.GetSubtree("Resources");
-        }
-
-        public bool IsLoaded = true;
-
-        public void LoadStep()
-        {
-
-        }
-
-        public string GetString(string resource)
-        {
-            try
-            {
-                return resourceStringMap.GetValue(resource, ResContext).ValueAsString;
-            }
-            catch (Exception)
-            {
-                return resource;
-            }
-
-        }
-
-        public string CurrentLanguage
-        {
-            get
-            {
-                return ResContext.Languages[0];
-            }
-            set
-            {
-                ResContext.Languages = new List<string> { value };
-            }
-        }
-
-    }
-
-#else
     public class ApplicationResources
     {
         private static CultureInfo uiCulture = Thread.CurrentThread.CurrentUICulture;
@@ -142,5 +92,4 @@ namespace Sanet.XNAEngine.Localization
             }
         }
     }
-#endif
 }

@@ -460,10 +460,6 @@ namespace Sanet.XNAEngine
 		#region Static Methods
 		public static bool IsTouchAvailable()
 		{
-			#if NETFX_CORE
-			//TODO: implement real check to see if we are using real keaboard or on-screen one
-			return false;
-			#endif
 			return true;
 		}
 		#endregion

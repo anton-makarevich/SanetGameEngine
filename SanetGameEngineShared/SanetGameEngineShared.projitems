@@ -31,6 +31,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Geometry\Line.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\TouchInput.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGameObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IFileLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IKeyboardTracker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ITextElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\LocalizerExtensions.cs" />
@@ -81,9 +82,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\GameTimer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Helpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\DefaultFileLoader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\XMLLoader.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Input\TouchInput.cs.orig" />
   </ItemGroup>
 </Project>

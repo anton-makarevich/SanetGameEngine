@@ -8,7 +8,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows;
 
 namespace Sanet.XNAEngine.Sounds
 {
@@ -79,11 +78,7 @@ namespace Sanet.XNAEngine.Sounds
         {
             get
             {
-                return _songVolume
-#if WP8
-                    *2.5f
-#endif
-;
+                return _songVolume;
             }
             set
             {

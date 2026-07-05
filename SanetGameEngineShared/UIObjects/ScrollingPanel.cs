@@ -676,11 +676,7 @@ namespace Sanet.XNAEngine
 
 		}
 
-		void SetReturnAnimation(Vector2 pos1, Vector2 pos2, bool force
-			#if !WP7
-			=false
-			#endif
-		)
+		void SetReturnAnimation(Vector2 pos1, Vector2 pos2, bool force = false)
 		{
 			if (DisableAnimations && !force)
 			{ 
