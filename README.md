@@ -1,4 +1,4 @@
-# SanetGameEngine
+# Polygame
 
 Very basic game engine on top of MonoGame.
 
@@ -11,13 +11,13 @@ Very basic game engine on top of MonoGame.
 
 ## Prerequisites
 
-- .NET 8 SDK
+- .NET 10 SDK
 - Android workload (`dotnet workload install android`)
 - iOS workload (`dotnet workload install ios`) — macOS only
 
 ## MonoGame Baseline
 
-Version 3.8.x with SDK-style projects and PackageReference.
+Version 3.8.4 with SDK-style projects and PackageReference.
 
 ## Historical Note
 
