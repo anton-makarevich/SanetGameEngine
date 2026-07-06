@@ -7,6 +7,7 @@
     <OutputType>Library</OutputType>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoWarn>$(NoWarn);CA1416;CA1422</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.iOS" Version="3.8.4.1" />

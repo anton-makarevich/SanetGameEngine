@@ -87,7 +87,7 @@ namespace Sanet.Polygame
             }
         }
 
-        void _textBox_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        void _textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             //actually in android it's more easy to use Properties of e arg
             //but to keep it easier to maintain through different platforms, code is the same everuwhere.
