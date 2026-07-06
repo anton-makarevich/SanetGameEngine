@@ -1,0 +1,14 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="ARM" />
+    <Platform Name="Mixed Platforms" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="src/Polygame.iOS/Polygame.iOS.csproj" />
+  <Project Path="src/Polygame.Android/Polygame.Android.csproj" />
+  <Project Path="src/Polygame.WindowsDX/Polygame.WindowsDX.csproj" />
+  <Project Path="src/Polygame.DesktopGL/Polygame.DesktopGL.csproj" />
+  <Project Path="src/Polygame.Core/Polygame.Core.csproj" />
+</Solution>

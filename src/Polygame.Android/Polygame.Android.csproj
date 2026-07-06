@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-android</TargetFramework>
+    <ProjectGuid>{B6CE58B6-1DB3-472E-A541-51426827A049}</ProjectGuid>
+    <RootNamespace>Sanet.Polygame.Android</RootNamespace>
+    <AssemblyName>Polygame.Android</AssemblyName>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoWarn>$(NoWarn);CA1416;CA1422</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.4.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Polygame.Core\Polygame.Core.csproj" />
+  </ItemGroup>
+</Project>
