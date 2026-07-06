@@ -450,10 +450,6 @@ public class TextBlockStandard : GameObject2D, ITextElement
     }
 
     Color _c;
-    public override void Update(RenderContext renderContext)
-    {
-        base.Update(renderContext);
 
-    }
     #endregion
 }

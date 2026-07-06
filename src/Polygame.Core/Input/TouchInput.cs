@@ -11,22 +11,17 @@ namespace Sanet.Polygame.Input;
 
 public class TouchInput : IGameObject
 {
-	#region Constructor
 	public TouchInput(GameObject2D parent)
 		: base()
 	{
 		_parent = parent;
 		DetectLeaveBorder = true;
 	}
-	#endregion
 
-	#region Events
 	public event Action OnClick;
 	public event Action OnEnter;
 	public event Action OnLeave;
-	#endregion
 
-	#region Fields
 	const int MinimalDistance = 1;
 	public const int MaximumClickTime = 900;
 
@@ -54,9 +49,7 @@ public class TouchInput : IGameObject
 	bool _isCanceled;
 
 	Vector2 _lastDistance;
-	#endregion
 
-	#region Properties
 	public int PressTime
 	{
 		get
@@ -140,9 +133,7 @@ public class TouchInput : IGameObject
 		get => _abortLoop;
 		set => _abortLoop=value;
 	}
-	#endregion
 
-	#region Methods
 	public void Update(RenderContext renderContext)
 	{
 		if (!_parent.CanDraw)
@@ -170,7 +161,6 @@ public class TouchInput : IGameObject
 
 		if (touchStates.IsConnected &&  touches> 0)
 		{
-			#region touch, not pressed
 			if (!IsPressed)
 			{
 				_touchCounter = 0;
@@ -205,13 +195,11 @@ public class TouchInput : IGameObject
 				}
 
 			}
-			#endregion
-			#region Touch pressed
 			else //pressed
 			{
 				var touchLoc = touchStates.FirstOrDefault(tLocation => tLocation.Id == _touchId);
 
-				if (touchLoc == null || touchLoc.State == TouchLocationState.Invalid || (DetectLeaveBorder && !_parent.HitTest(touchLoc.Position, false)))
+				if (touchLoc.State == TouchLocationState.Invalid || (DetectLeaveBorder && !_parent.HitTest(touchLoc.Position, false)))
 				{
 					_touchId = -1;
 
@@ -258,21 +246,20 @@ public class TouchInput : IGameObject
 				#region second point
 				//support for second touch point
 				//TODO: actualy it's awfull, need to refactor to make it more generic
-				if (_touchCounter == 1 && touchStates.Count>1)
+				if (_touchCounter == 1 && touchStates.Count > 1)
 				{
-					var tc = touchStates.FirstOrDefault(f => f.Id != _touchId && f.State!= TouchLocationState.Invalid && f.Position != Vector2.Zero);
-					if (tc != null)
-					{
-						_touchCounter = 2;
-						_touchId2 = tc.Id;
-					}
+					var tc = touchStates.FirstOrDefault(f =>
+						f.Id != _touchId && f.State != TouchLocationState.Invalid && f.Position != Vector2.Zero);
+
+					_touchCounter = 2;
+					_touchId2 = tc.Id;
 				}
 
-				if (_touchCounter == 2)
+				if (_touchCounter != 2) return;
 				{
 					var touchLoc2 = touchStates.FirstOrDefault(tLocation => tLocation.Id == _touchId2);
 
-					if (touchLoc2 == null || touchLoc2.State == TouchLocationState.Invalid || (DetectLeaveBorder && !_parent.HitTest(touchLoc2.Position, false)))
+					if (touchLoc2.State == TouchLocationState.Invalid || (DetectLeaveBorder && !_parent.HitTest(touchLoc2.Position, false)) || touchLoc2.State == TouchLocationState.Released)
 					{
 						_touchId2 = -1;
 						Direction2 = Vector2.Zero;
@@ -281,33 +268,19 @@ public class TouchInput : IGameObject
 					}
 					else
 					{
-						if (touchLoc2.State == TouchLocationState.Released)
-						{
-							_touchId2 = -1;
+						PressPoint2 = touchLoc2.Position;
+						var distance = PressPoint2 - _initialPoint2;
 
-							Direction2 = Vector2.Zero;
-							Distance2 = Vector2.Zero;
-							_touchCounter = 1;
-						}
+						if (distance.Length() > MinimalDistance)
+							SetDirection(distance,2);
 						else
-						{
-							PressPoint2 = touchLoc2.Position;
-							var distance = PressPoint2 - _initialPoint2;
+							Distance2 = Vector2.Zero;
 
-							if (distance.Length() > MinimalDistance)
-								SetDirection(distance,2);
-							else
-								Distance2 = Vector2.Zero;
-
-						}
 					}
 				}
-				#endregion
 			}
-			#endregion
 		}
 		//no touches - let's check mouse
-		#region Mouse
 		else
 		{
 			_touchCounter = 1;
@@ -429,12 +402,9 @@ public class TouchInput : IGameObject
 				OnLeave();
 		}
 	}
-	#endregion
 
-	#region Static Methods
 	public static bool IsTouchAvailable()
 	{
 		return true;
 	}
-	#endregion
 }

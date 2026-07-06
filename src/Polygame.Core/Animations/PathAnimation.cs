@@ -122,7 +122,7 @@ public class PathAnimation : AnimationBase
             var np = Points[_nextPointIndex]; //point we are moving to
 
             //if position unknown 
-            if (_position == null || (_position == np.Position && cp.Rotation == np.Rotation))
+            if ((_position == np.Position && Math.Abs(cp.Rotation - np.Rotation) < 0.01))
             {
                 _position = cp.Position; //set it to point we are moving from
                 _speed = cp.Speed; //the same with speed

@@ -71,7 +71,6 @@ public class ScrollingPanel :GameObject2D
 	Vector2 _loc;
 
 	float _height;
-	float _width;
 
 	Rectangle _cissorRectangle;
 	#endregion
