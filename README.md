@@ -19,6 +19,10 @@ Very basic game engine on top of MonoGame.
 
 Version 3.8.4 with SDK-style projects and PackageReference.
 
+## License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
 ## Historical Note
 
 This project was originally developed in 2011-2012 for Windows Phone XNA.
