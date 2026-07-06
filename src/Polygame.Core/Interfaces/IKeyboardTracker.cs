@@ -1,10 +1,10 @@
 using System;
-namespace Sanet.Polygame
+
+namespace Sanet.Polygame.Interfaces;
+
+public interface IKeyboardTracker
 {
-    public interface IKeyboardTracker
-    {
-        string Text { get; set; }
-        string PrevText { get; set; }
-        Guid TextFieldId { get; }
-    }
+    string Text { get; set; }
+    string PrevText { get; set; }
+    Guid TextFieldId { get; }
 }

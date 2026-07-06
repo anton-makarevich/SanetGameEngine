@@ -1,12 +1,11 @@
-namespace Sanet.Polygame
+namespace Sanet.Polygame.SceneManager;
+
+public enum SceneTranslationModes
 {
-    public enum SceneTranslationModes
-    {
-        None,
-        SlideToLeft,
-        SlideToRight,
-        SlideToBottom,
-        SlideToTop,
-        FadeOut
-    }
+    None,
+    SlideToLeft,
+    SlideToRight,
+    SlideToBottom,
+    SlideToTop,
+    FadeOut
 }

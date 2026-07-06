@@ -4,58 +4,51 @@ using System.Linq;
 using System.Text;
 
 
-namespace Sanet.Polygame.Localization
+namespace Sanet.Polygame.Localization;
+
+public static class LocalizerExtensions
 {
-    public static class LocalizerExtensions
-    {
-        static ResourceModel _RModel;
+    static ResourceModel _RModel;
         
-        public static void Initialize(string[] locales)
-        {
-            _RModel = new ResourceModel(locales);
-        }
+    public static void Initialize(string[] locales)
+    {
+        _RModel = new ResourceModel(locales);
+    }
 
-        public static bool IsLoaded
+    public static bool IsLoaded
+    {
+        get
         {
-            get
-            {
-                if (_RModel == null)
-                    return false;
-                return _RModel.IsLoaded;
-            }
+            if (_RModel == null)
+                return false;
+            return _RModel.IsLoaded;
+        }
             
-        }
+    }
 
-        public static string CurrentLanguage
-        {
-            get
-            {
-                return _RModel.CurrentLanguage;
-            }
-            set
-            {
-                _RModel.CurrentLanguage = value;
-            }
-        }
+    public static string CurrentLanguage
+    {
+        get => _RModel.CurrentLanguage;
+        set => _RModel.CurrentLanguage = value;
+    }
 
-        public static void LoadStep()
-        {
+    public static void LoadStep()
+    {
+        _RModel.LoadStep();
+    }
+
+    public static void Load()
+    {
+        while (!IsLoaded)
             _RModel.LoadStep();
-        }
-
-        public static void Load()
-        {
-            while (!IsLoaded)
-                _RModel.LoadStep();
-        }
+    }
 
 
-        public static string Localize(this string value)
-        {
-            if (!string.IsNullOrEmpty(value))
-                return _RModel.GetString(value);
-            return "";
+    public static string Localize(this string value)
+    {
+        if (!string.IsNullOrEmpty(value))
+            return _RModel.GetString(value);
+        return "";
 
-        }
     }
 }

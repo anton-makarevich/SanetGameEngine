@@ -1,9 +1,8 @@
-namespace Sanet.Polygame
+namespace Sanet.Polygame.Enums;
+
+public enum GameObjectOrientation
 {
-    public enum GameObjectOrientation
-    {
-        Horizontal,
-        Vertical,
-        Both
-    }
+    Horizontal,
+    Vertical,
+    Both
 }

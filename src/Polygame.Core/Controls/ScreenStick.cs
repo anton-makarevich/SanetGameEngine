@@ -1,30 +1,8 @@
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+using Sanet.Polygame.BaseObjects;
+using Sanet.Polygame.UIObjects;
 
 namespace Sanet.Polygame.Controls
 {
@@ -54,7 +32,7 @@ namespace Sanet.Polygame.Controls
                 get
                 {
                     //relative difference between current thumb position and its original position
-                    Vector2 scaledVector = (_thumbPosition - _thumbOriginalPosition) / (_pad.Width / 2);
+                    var scaledVector = (_thumbPosition - _thumbOriginalPosition) / (_pad.Width / 2);
                     scaledVector.Y *= -1;
 
                     if (scaledVector.Length() > 1f)
@@ -73,13 +51,7 @@ namespace Sanet.Polygame.Controls
             int _touchId = -1;
             bool _mousePressed = false;
 
-            public bool IsActive
-            {
-                get
-                {
-                    return (_touchId!=-1 || _mousePressed);
-                }
-            }
+            public bool IsActive => (_touchId!=-1 || _mousePressed);
 
             private BoundingSphere stickCollision;
             
@@ -151,7 +123,7 @@ namespace Sanet.Polygame.Controls
             
             public override void Draw(RenderContext renderContext)
             {
-                Vector2 currentLeftPosition = new Vector2(
+                var currentLeftPosition = new Vector2(
                     _thumbOriginalPosition.X + Stick.X * maxDistance,
                     _thumbOriginalPosition.Y + Stick.Y * maxDistance * -1);
 
@@ -170,12 +142,12 @@ namespace Sanet.Polygame.Controls
                 //check whether we have any touch inputs
                 if (touches.Count > 0)
                 {
-                    for (int i = 0; i < touches.Count; i++)
+                    for (var i = 0; i < touches.Count; i++)
                     {
-                        TouchLocation t = touches[i];
+                        var t = touches[i];
 
-                        float x = t.Position.X;
-                        float y = t.Position.Y;
+                        var x = t.Position.X;
+                        var y = t.Position.Y;
 
                         if (t.Id == _touchId)
                         {
@@ -253,7 +225,7 @@ namespace Sanet.Polygame.Controls
 
             private bool IsTouchingLeftStick(ref float x, ref float y)
             {
-                Vector3 point = new Vector3(x-_padOffset.X, y-_padOffset.Y, 0);
+                var point = new Vector3(x-_padOffset.X, y-_padOffset.Y, 0);
                 stickCollision.Contains(ref point, out t);
                 return (t == ContainmentType.Contains);
             }

@@ -1,13 +1,7 @@
- 
- 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
+using Sanet.Polygame.BaseObjects;
 
 namespace Sanet.Polygame.Controls
 {
@@ -22,10 +16,7 @@ namespace Sanet.Polygame.Controls
             float _yPos = 0;
             float XPos
             {
-                get
-                {
-                    return _xPos;
-                }
+                get => _xPos;
                 set
                 {
                     _xPos += value;
@@ -35,10 +26,7 @@ namespace Sanet.Polygame.Controls
             }
             float YPos
             {
-                get
-                {
-                    return _yPos;
-                }
+                get => _yPos;
                 set
                 {
                     _yPos += value;
@@ -49,15 +37,8 @@ namespace Sanet.Polygame.Controls
             /// <summary>
             /// The Value From Stick
             /// </summary>
-            public Vector2 Stick
-            {
-                get
-                {
-                    return new Vector2 (_xPos,_yPos);
-                }
-            }
+            public Vector2 Stick => new(_xPos,_yPos);
 
-            
             #endregion
 
             public KeyboardStick()

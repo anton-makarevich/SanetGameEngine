@@ -1,12 +1,11 @@
-namespace Sanet.Polygame
+namespace Sanet.Polygame.SceneManager;
+
+public enum GameSceneModes
 {
-    public enum GameSceneModes
-    {
-        InAnimation,
-        Normal,
-        OutAnimation,
-        OutTranslation,
-        InTranslation,
-        OffScreen
-    }
+    InAnimation,
+    Normal,
+    OutAnimation,
+    OutTranslation,
+    InTranslation,
+    OffScreen
 }

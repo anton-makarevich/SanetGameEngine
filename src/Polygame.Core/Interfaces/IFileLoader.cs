@@ -1,9 +1,8 @@
 using System.Xml.Linq;
 
-namespace Sanet.Polygame
+namespace Sanet.Polygame.Interfaces;
+
+public interface IFileLoader
 {
-    public interface IFileLoader
-    {
-        XDocument LoadDocument(string path);
-    }
+    XDocument LoadDocument(string path);
 }

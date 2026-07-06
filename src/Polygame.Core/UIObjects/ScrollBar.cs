@@ -1,82 +1,55 @@
-using Microsoft.Xna.Framework;
-namespace Sanet.Polygame
+using Sanet.Polygame.BaseObjects;
+using Sanet.Polygame.Enums;
+
+namespace Sanet.Polygame.UIObjects;
+
+public class ScrollBar:GameObject2D
 {
-    public class ScrollBar:GameObject2D
+    BGContainer _bg;
+    BGContainer _slider;
+
+    public ScrollBar(BGContainer bg, BGContainer slider)
     {
-        BGContainer _bg;
-        BGContainer _slider;
+        _bg = bg;
+        _slider = slider;
 
-        public ScrollBar(BGContainer bg, BGContainer slider)
-        {
-            _bg = bg;
-            _slider = slider;
+        AddChild(_bg);
+        AddChild(_slider);
+    }
 
-            AddChild(_bg);
-            AddChild(_slider);
-        }
+    public float Height => _bg.Height;
 
-        public float Height
-        {
-            get
-            { return _bg.Height; }
-        }
+    public float Width => _bg.Width;
 
-        public float Width
-        {
-            get
-            {
-                return _bg.Width;
-            }
-        }
+    public float Length
+    {
+        get => _bg.Length;
+        set => _bg.Length = value-_bg.HeaderLength;
+    }
 
-        public float Length
-        {
-            get
-            {
-                return _bg.Length;
-            }
-            set
-            {
-                _bg.Length = value-_bg.HeaderLength;
-            }
-        }
+    public float ScrollLength
+    {
+        get => _slider.Length;
+        set => _slider.Length = value;
+    }
 
-        public float ScrollLength
-        {
-            get
-            {
-                return _slider.Length;
-            }
-            set
-            {
-                _slider.Length = value;
-            }
-        }
+    public GameObjectOrientation Orientation => _bg.Orientation;
 
-        public GameObjectOrientation Orientation
-        {
-            get
-            {
-                return _bg.Orientation;
-            }
-        }
+    public void UpdatePosition(float relativePosition)
+    {
+        var min = 0;
+        var max = Length - ScrollLength;
 
-        public void UpdatePosition(float relativePosition)
-        {
-            int min = 0;
-            float max = Length - ScrollLength;
+        var y = relativePosition * max;
+        if (y < min)
+            y = min;
+        if (y > max)
+            y = max;
 
-            var y = relativePosition * max;
-            if (y < min)
-                y = min;
-            if (y > max)
-                y = max;
-
-           if (Orientation == GameObjectOrientation.Horizontal)
-                    _slider.Translate(y, 0);
-                else
-                    _slider.Translate(0, y);
+        if (Orientation == GameObjectOrientation.Horizontal)
+            _slider.Translate(y, 0);
+        else
+            _slider.Translate(0, y);
             
-        }
     }
 }

@@ -1,20 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+namespace Sanet.Polygame.Texts;
 
-namespace Sanet.Polygame
+public enum TextAlignment
 {
-    public enum TextAlignment
-    {
-        Top,
-        Left,
-        Middle,
-        Right,
-        Bottom,
-        TopLeft,
-        TopRight,
-        BottomLeft,
-        BottomRight
-    }
+    Top,
+    Left,
+    Middle,
+    Right,
+    Bottom,
+    TopLeft,
+    TopRight,
+    BottomLeft,
+    BottomRight
 }

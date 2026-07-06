@@ -1,43 +1,36 @@
-﻿
-using Android.Content;
+﻿using Android.Content;
 using Android.Net;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Giftr.Common
+namespace Sanet.Polygame.Android.Engine.Utils;
+
+public static class InternetCheker
 {
-    public static class InternetCheker
+    static Context _androidContext;
+
+    public static void Init(Context context)
     {
-        static Context _androidContext;
+        _androidContext = context;
+    }
 
-        public static void Init(Context context)
+    /// <summary>
+    /// Check for internet connection
+    /// </summary>
+    /// <returns></returns>
+    public static bool IsInternetAvailable()
+    {
+        try
         {
-            _androidContext = context;
-        }
 
-        /// <summary>
-        /// Check for internet connection
-        /// </summary>
-        /// <returns></returns>
-        public static bool IsInternetAvailable()
-        {
-            try
+            var connectivityManager = (ConnectivityManager)_androidContext.GetSystemService(Context.ConnectivityService);
+
+            var activeConnection = connectivityManager.ActiveNetworkInfo;
+
+            if ((activeConnection != null) && activeConnection.IsConnected)
             {
-
-                var connectivityManager = (ConnectivityManager)_androidContext.GetSystemService(Context.ConnectivityService);
-
-                var activeConnection = connectivityManager.ActiveNetworkInfo;
-
-                if ((activeConnection != null) && activeConnection.IsConnected)
-                {
-                    return true;
-                }
+                return true;
             }
-            catch { }
-            return false;
         }
+        catch { }
+        return false;
     }
 }

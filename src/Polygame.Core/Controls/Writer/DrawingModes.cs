@@ -1,8 +1,7 @@
-namespace Sanet.Polygame.Controls
+namespace Sanet.Polygame.Controls.Writer;
+
+public enum DrawingModes
 {
-    public enum DrawingModes
-    {
-        Marker=0,
-        Eraser=1
-    }
+    Marker=0,
+    Eraser=1
 }

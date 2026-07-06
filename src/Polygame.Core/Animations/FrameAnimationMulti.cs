@@ -7,74 +7,61 @@ using System.Text;
 using System.Xml.Linq;
 
 
-namespace Sanet.Polygame.Animations
+namespace Sanet.Polygame.Animations;
+
+public class FrameAnimationMulti : FrameAnimation
 {
-    public class FrameAnimationMulti : FrameAnimation
+        
+    #region Fields
+        
+    //collections of extra textures names
+    List<string> _extraTexturesNames = new List<string>();
+                
+    #endregion
+
+    #region Properties
+
+                
+    public int CurrentTextureNumber => _texturesOrder[CurrentFrame];
+
+    public List<string> ExtraTextures => _extraTexturesNames;
+
+
+    public List<int> _texturesOrder=new List<int>();
+
+        
+    #endregion
+
+    #region Constructor
+    public FrameAnimationMulti(XElement xmldata)
+        : base(xmldata)
     {
-        
-        #region Fields
-        
-        //collections of extra textures names
-        List<string> _extraTexturesNames = new List<string>();
-                
-        #endregion
+        var texturesNo = int.Parse(xmldata.Attribute("Textures").Value);
 
-        #region Properties
-
-                
-        public int CurrentTextureNumber 
-        { 
-            get 
-            { 
-                return _texturesOrder[CurrentFrame]; 
-            } 
-        } 
-
-        public List<string> ExtraTextures
+        for (var i = 1; i < texturesNo; i++)
         {
-            get
+            _extraTexturesNames.Add( xmldata.Attribute("ExtraTexture" + i.ToString()).Value);
+                
+        }
+        var order = xmldata.Attribute("FramesOrderMulti");
+        if (order != null)
+        {
+            var frames = order.Value.Split(',');
+            _framesOrder = new List<int>();
+            foreach (var frame in frames)
             {
-                return _extraTexturesNames;
+                var frameDetails = frame.Split('-');
+                _texturesOrder.Add(int.Parse(frameDetails[0]));
+                _framesOrder.Add(int.Parse(frameDetails[1]));
             }
         }
-
-        
-        public List<int> _texturesOrder=new List<int>();
-
-        
-        #endregion
-
-        #region Constructor
-        public FrameAnimationMulti(XElement xmldata)
-            : base(xmldata)
-        {
-            var texturesNo = int.Parse(xmldata.Attribute("Textures").Value);
-
-            for (int i = 1; i < texturesNo; i++)
-            {
-                _extraTexturesNames.Add( xmldata.Attribute("ExtraTexture" + i.ToString()).Value);
-                
-            }
-            var order = xmldata.Attribute("FramesOrderMulti");
-            if (order != null)
-            {
-                var frames = order.Value.Split(',');
-                _framesOrder = new List<int>();
-                foreach (var frame in frames)
-                {
-                    var frameDetails = frame.Split('-');
-                    _texturesOrder.Add(int.Parse(frameDetails[0]));
-                    _framesOrder.Add(int.Parse(frameDetails[1]));
-                }
-            }
-        }
+    }
 
 
-        #endregion
+    #endregion
 
-        #region Methods
+    #region Methods
 
                
-        #endregion
-    }
+    #endregion
 }

@@ -6,48 +6,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using Sanet.Polygame.BaseObjects;
 
-namespace Sanet.Polygame.Animations
+namespace Sanet.Polygame.Animations;
+
+public class SoundAnimation:AnimationBase
 {
-    public class SoundAnimation:AnimationBase
+    string _fileSound;
+
+    #region Constructor
+    public SoundAnimation(XElement xmldata)
     {
-        string _fileSound;
-
-#region Constructor
-        public SoundAnimation(XElement xmldata)
-        {
-            _fileSound = xmldata.Attribute("Sound").Value;
-            PlayOnClick = xmldata.Attribute("PlayOnClick").Value.ToLower() == "true";
-        }
-
-        public SoundAnimation(string soundfile)
-        {
-            _fileSound = soundfile;
-            PlayOnClick = false;
-        }
-
-#endregion
-
-        public string SoundFile
-        {
-            get
-            {
-                return _fileSound;
-            }
-        }
-
-#region methods
-        public override void Update(RenderContext renderContext)
-        {
-            
-        }
-
-        public override void PlayAnimation()
-        {
-            SoundsProvider.PlaySound(_fileSound);
-        }
-
-
-#endregion
+        _fileSound = xmldata.Attribute("Sound").Value;
+        PlayOnClick = xmldata.Attribute("PlayOnClick").Value.ToLower() == "true";
     }
+
+    public SoundAnimation(string soundfile)
+    {
+        _fileSound = soundfile;
+        PlayOnClick = false;
+    }
+
+    #endregion
+
+    public string SoundFile => _fileSound;
+
+    #region methods
+    public override void Update(RenderContext renderContext)
+    {
+            
+    }
+
+    public override void PlayAnimation()
+    {
+        SoundsProvider.PlaySound(_fileSound);
+    }
+
+
+    #endregion
 }

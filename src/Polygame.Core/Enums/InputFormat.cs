@@ -1,9 +1,8 @@
-namespace Sanet.Polygame
+namespace Sanet.Polygame.Enums;
+
+public enum InputFormat
 {
-    public enum InputFormat
-    {
-        All,
-        Numeric,
-        Capital
-    }
+    All,
+    Numeric,
+    Capital
 }
