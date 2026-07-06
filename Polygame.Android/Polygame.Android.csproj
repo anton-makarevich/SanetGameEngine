@@ -10,5 +10,7 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.Android" Version="3.8.4.1" />
   </ItemGroup>
-  <Import Project="..\Polygame.Shared\Polygame.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\Polygame.Core\Polygame.Core.csproj" />
+  </ItemGroup>
 </Project>

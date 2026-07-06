@@ -4,7 +4,6 @@ using Android.Text;
 using Android.Views.InputMethods;
 using Android.Widget;
 using System;
-using System.Linq;
 
 namespace Sanet.Polygame
 {
