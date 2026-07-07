@@ -22,7 +22,7 @@ jobs:
       - name: Get version from main branch
         id: main-version
         run: |
-          version=$(git show main:Directory.Build.props | grep '<VersionPrefix>' | sed 's/.*<VersionPrefix>\(.*\)<\/VersionPrefix>.*/\1/')
+          version=$(git show origin/main:Directory.Build.props | grep '<VersionPrefix>' | sed 's/.*<VersionPrefix>\(.*\)<\/VersionPrefix>.*/\1/')
           echo "Main version: $version"
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
