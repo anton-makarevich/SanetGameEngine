@@ -110,7 +110,9 @@ public class HelpersTests
 
         var result = Helpers.QuaternionToEuler(q);
 
-        result.Length().ShouldBeGreaterThan(0f);
+        result.X.ShouldBe(MathHelper.PiOver2, 0.01f);
+        result.Y.ShouldBe(0f, 0.01f);
+        result.Z.ShouldBe(0f, 0.01f);
     }
 
     [Fact]
@@ -120,7 +122,9 @@ public class HelpersTests
 
         var result = Helpers.QuaternionToEuler(q);
 
-        result.Length().ShouldBeGreaterThan(0f);
+        result.X.ShouldBe(0f, 0.01f);
+        result.Y.ShouldBe(MathHelper.PiOver2, 0.01f);
+        result.Z.ShouldBe(0f, 0.01f);
     }
 
     [Fact]

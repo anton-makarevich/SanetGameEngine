@@ -119,11 +119,14 @@ public class GameSceneTests
     {
         var scene = new TestGameScene("Test");
         var obj = new GameObject2D();
-
         scene.AddSceneObject(obj);
+
         scene.AddSceneObject(obj);
 
         scene.GetSceneObject2DByName(obj.Name).ShouldBe(obj);
+        scene.RemoveSceneObject(obj);
+        scene.GetSceneObject2DByName(obj.Name).ShouldBeNull();
+        obj.Scene.ShouldBeNull();
     }
 
     [Fact]

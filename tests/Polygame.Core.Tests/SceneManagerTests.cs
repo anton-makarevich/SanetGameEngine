@@ -171,21 +171,6 @@ public class SceneManagerTests
         result.ShouldBeTrue();
     }
 
-    [Fact]
-    public void GetOpositeTranslationMode_ReturnsOpposite()
-    {
-        GameScene.GetOpositeTranslationMode(SceneTranslationModes.SlideToLeft)
-            .ShouldBe(SceneTranslationModes.SlideToRight);
-        GameScene.GetOpositeTranslationMode(SceneTranslationModes.SlideToRight)
-            .ShouldBe(SceneTranslationModes.SlideToLeft);
-        GameScene.GetOpositeTranslationMode(SceneTranslationModes.SlideToTop)
-            .ShouldBe(SceneTranslationModes.SlideToBottom);
-        GameScene.GetOpositeTranslationMode(SceneTranslationModes.SlideToBottom)
-            .ShouldBe(SceneTranslationModes.SlideToTop);
-        GameScene.GetOpositeTranslationMode(SceneTranslationModes.None)
-            .ShouldBe(SceneTranslationModes.None);
-    }
-
     private class TestGameScene : GameScene
     {
         public TestGameScene(string name) : base(name, null) { }

@@ -591,12 +591,12 @@ public class GameObject2DTests
     public void Initialize_CallsInitializeOnChildren()
     {
         var parent = new GameObject2D();
-        var child = new GameObject2D();
+        var child = new InitializableSpy();
         parent.AddChild(child);
 
         parent.Initialize();
 
-        child.ForceUpdate.ShouldBe(child.ForceUpdate);
+        child.Initialized.ShouldBeTrue();
     }
 
     [Fact]
@@ -624,6 +624,16 @@ public class GameObject2DTests
 
         parent.Children[0].ShouldBe(child2);
         parent.Children[1].ShouldBe(child1);
+    }
+
+    private class InitializableSpy : GameObject2D
+    {
+        public bool Initialized { get; private set; }
+        public override void Initialize()
+        {
+            Initialized = true;
+            base.Initialize();
+        }
     }
 
     private class MockGameObject : IGameObject
