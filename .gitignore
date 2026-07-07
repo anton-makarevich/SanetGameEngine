@@ -6,3 +6,5 @@ bin/
 *.user
 *.bak
 .idea/
+.agents/skills
+skills-lock.json
