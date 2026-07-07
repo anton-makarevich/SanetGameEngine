@@ -11,4 +11,5 @@
   <Project Path="src/Polygame.WindowsDX/Polygame.WindowsDX.csproj" />
   <Project Path="src/Polygame.DesktopGL/Polygame.DesktopGL.csproj" />
   <Project Path="src/Polygame.Core/Polygame.Core.csproj" />
+  <Project Path="tests/Polygame.Core.Tests/Polygame.Core.Tests.csproj" />
 </Solution>
