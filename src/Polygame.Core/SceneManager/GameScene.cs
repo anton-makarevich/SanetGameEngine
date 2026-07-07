@@ -345,7 +345,7 @@ public abstract class GameScene
                     case "SoundAnimation":
                         ((GameSprite)rv).SoundAnimation = new SoundAnimation(animation);
                         if (string.Equals(animation.Attribute("AutoPlay").Value, "true", StringComparison.OrdinalIgnoreCase))
-                            ((GameSprite)rv).PathAnimation.PlayAnimation();
+                            ((GameSprite)rv).SoundAnimation.PlayAnimation();
                         break;
 
                 }
@@ -497,7 +497,7 @@ public abstract class GameScene
         var sprite = new ScrollingPanel(
             float.Parse(query.Attribute("Width").Value, CultureInfo.InvariantCulture),
             float.Parse(query.Attribute("Height").Value, CultureInfo.InvariantCulture),
-            Enum.Parse<GameObjectOrientation>(query.Attribute("Orientation").Value,false)
+            Enum.Parse<GameObjectOrientation>(query.Attribute("Orientation").Value, true)
         );
         var atr = query.Attribute("AutoLayout");
         if (atr != null)

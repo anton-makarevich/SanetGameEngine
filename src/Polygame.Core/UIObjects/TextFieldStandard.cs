@@ -76,6 +76,9 @@ public class TextFieldStandard : GameObject2D
     private string _tipString;
 
     private InputFormat _inputFormat;
+
+    private string _cachedDisplayText = string.Empty;
+    private bool _isTextDirty = true;
     #endregion
 
     #region Properties
@@ -144,6 +147,7 @@ public class TextFieldStandard : GameObject2D
         {
             _textBuilder.Clear();
             _textBuilder.Append(value);
+            _isTextDirty = true;
         }
     }
 
@@ -165,15 +169,16 @@ public class TextFieldStandard : GameObject2D
     }
     public override void Update(RenderContext renderContext)
     {
-        //If password - replace chars with password char
-        //TODO maybe need to show last char for few seconds
-        //or alternatively have button to see typed password when pressed
         if (_textBuilder.Length > 0)
         {
-            _text.Text = (IsPassword) ? new String('*', _textBuilder.Length) : _textBuilder.ToString();
+            if (_isTextDirty)
+            {
+                _cachedDisplayText = IsPassword ? new string('*', _textBuilder.Length) : _textBuilder.ToString();
+                _isTextDirty = false;
+            }
+            _text.Text = _cachedDisplayText;
             _text.TextColor = FontColor;
             _text.FontScale = Vector2.One*FontSize;
-                
             _text.Alignment = TextAlignment.TopLeft;
         }
         else
@@ -233,7 +238,7 @@ public class TextFieldStandard : GameObject2D
         if (_text.LineSize.X > _bg.LocalScale.X - 10)
             return;
 
-        if (MaxChars != 0 && _text.Text.Length == MaxChars)
+        if (MaxChars != 0 && _textBuilder.Length == MaxChars)
             return;
 
         var keyString = key.ToString();
@@ -250,6 +255,7 @@ public class TextFieldStandard : GameObject2D
                 keyString = keyString.ToUpper();
 
             _textBuilder.Append(keyString);
+            _isTextDirty = true;
             if (TextChanged != null)
                 TextChanged();
         }
@@ -260,7 +266,7 @@ public class TextFieldStandard : GameObject2D
         if (_textFieldGuid == id && _textBuilder.Length > 0)
         {
             _textBuilder.Length -= 1;
-                
+            _isTextDirty = true;
             if (TextChanged != null)
                 TextChanged();
         }
@@ -310,12 +316,14 @@ public class TextFieldStandard : GameObject2D
     public void Clear()
     {
         _textBuilder.Clear();
+        _isTextDirty = true;
     }
 
     public void OverrideText(string text)
     {
         _textBuilder.Clear();
         _textBuilder.Append(text);
+        _isTextDirty = true;
     }
         
     #endregion

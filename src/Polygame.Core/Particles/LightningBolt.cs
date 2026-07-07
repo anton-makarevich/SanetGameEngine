@@ -8,7 +8,7 @@ namespace Sanet.Polygame.Particles;
 
 public class LightningBolt
 {
-    public List<LightningLine> Segments { get; } = new();
+    public List<LightningLine> Segments { get; }
     public Vector2 Start => Segments[0].A;
     public Vector2 End => Segments.Last().B;
     public bool IsComplete => Alpha <= 0;

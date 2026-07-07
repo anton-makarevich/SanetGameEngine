@@ -127,13 +127,6 @@ public class Photo:GameSpriteTouchable
     }
 
 
-    private Vector2 GetScale(Vector2 distance)
-    {
-        var size = new Vector2(Width, Height);
-        var actSize = size * LocalScale;
-        return LocalScale * actSize / (actSize - distance);
-    }
-
     public override void Draw(RenderContext renderContext)
     {
         base.Draw(renderContext);

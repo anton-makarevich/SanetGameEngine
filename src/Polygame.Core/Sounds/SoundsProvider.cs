@@ -128,6 +128,7 @@ public static class SoundsProvider
     #region  Methods
     public static bool IsPlaying(string sound)
     {
+        sound = sound.ToLower();
         return _playingSounds.ContainsKey(sound) && _playingSounds[sound].State == SoundState.Playing;
     }
 
