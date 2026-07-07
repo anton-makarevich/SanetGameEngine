@@ -33,15 +33,16 @@ public class GameObject2D:IGameObject
     #endregion
 
     #region Fields
-    int _z;
-    bool _canDraw;
-    GameObjectOrientation _deviceScalingOrientation = GameObjectOrientation.Both;
 
-    Vector2 _pivotPoint;
+    private int _z;
+    private bool _canDraw;
+    private GameObjectOrientation _deviceScalingOrientation = GameObjectOrientation.Both;
 
-    Vector2 _worldPivot;
+    private Vector2 _pivotPoint;
 
-    string _customContent;
+    private Vector2 _worldPivot;
+
+    private string _customContent;
     #endregion
 
     #region Properties
@@ -216,7 +217,7 @@ public class GameObject2D:IGameObject
         set => _scene = value;
     }
 
-    Vector2 _deviceScale=Vector2.One;
+    private Vector2 _deviceScale=Vector2.One;
     public Vector2 DeviceScale 
     {
         get => _deviceScale;
@@ -325,9 +326,9 @@ public class GameObject2D:IGameObject
     public virtual void Translate(Vector2 position)
     {
         if (DeviceScalingOrientation== GameObjectOrientation.Horizontal)
-            position.Y = position.Y * (float)Math.Pow(SceneManager.SceneManager.RenderContext.DeviceScale.Y / SceneManager.SceneManager.RenderContext.DeviceScale.X,2);
+            position.Y = position.Y * (float)((SceneManager.SceneManager.RenderContext.DeviceScale.Y / SceneManager.SceneManager.RenderContext.DeviceScale.X) * (SceneManager.SceneManager.RenderContext.DeviceScale.Y / SceneManager.SceneManager.RenderContext.DeviceScale.X));
         else if(DeviceScalingOrientation== GameObjectOrientation.Vertical)
-            position.X = position.X * (float)Math.Pow(SceneManager.SceneManager.RenderContext.DeviceScale.X / SceneManager.SceneManager.RenderContext.DeviceScale.Y, 2);
+            position.X = position.X * (float)((SceneManager.SceneManager.RenderContext.DeviceScale.X / SceneManager.SceneManager.RenderContext.DeviceScale.Y) * (SceneManager.SceneManager.RenderContext.DeviceScale.X / SceneManager.SceneManager.RenderContext.DeviceScale.Y));
         LocalPosition = position;
     }
 
@@ -452,8 +453,8 @@ public class GameObject2D:IGameObject
                     //scaling of rotated asset
                     var cos = (float)Math.Cos(WorldRotationInRad);
                     var sin = (float)Math.Sin(WorldRotationInRad);
-                    var dx = (float)Math.Sqrt(Math.Pow((DeviceScale.X * cos), 2) + Math.Pow((DeviceScale.Y * sin), 2));
-                    var dy = (float)Math.Sqrt(Math.Pow((DeviceScale.X * sin), 2) + Math.Pow((DeviceScale.Y * cos), 2));
+                    var dx = (float)Math.Sqrt((DeviceScale.X * cos) * (DeviceScale.X * cos) + (DeviceScale.Y * sin) * (DeviceScale.Y * sin));
+                    var dy = (float)Math.Sqrt((DeviceScale.X * sin) * (DeviceScale.X * sin) + (DeviceScale.Y * cos) * (DeviceScale.Y * cos));
                     rotScale = new Vector2(dx, dy);
                 }
                 else

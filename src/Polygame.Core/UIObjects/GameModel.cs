@@ -6,8 +6,8 @@ namespace Sanet.Polygame.UIObjects;
 
 public class GameModel:GameObject3D
 {
-    string _assetFile;
-    Model _model;
+    private readonly string _assetFile;
+    private Model _model;
 
     public Vector3 ModelColor { get; set; }
 

@@ -28,14 +28,14 @@ public class PointSegment : GameObject2D
     #endregion
         
     #region Fields
-    private GameSprite _leftPart;
-    private GameSprite _rightPart;
-                
-    float _thickness = 1;
+    private readonly GameSprite _leftPart;
+    private readonly GameSprite _rightPart;
 
-    private Vector2 _point;
+    private float _thickness = 1;
 
-    Color _color;
+    private readonly Vector2 _point;
+
+    private Color _color;
                                          
     #endregion
 

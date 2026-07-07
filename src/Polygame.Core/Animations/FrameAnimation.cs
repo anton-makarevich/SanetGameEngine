@@ -26,7 +26,7 @@ public class FrameAnimation : AnimationBase
 
     #region Properties
 
-    int _numFrames;
+    private int _numFrames;
     public int NumFrames
     {
         get => _numFrames;
@@ -60,8 +60,8 @@ public class FrameAnimation : AnimationBase
             int.Parse(xmldata.Attribute("FrameInterval").Value),
             int.Parse(xmldata.Attribute("FramesInRow").Value))
     {
-        IsLooping = xmldata.Attribute("IsLooping").Value.ToLower() == "true";
-        PlayOnClick = xmldata.Attribute("PlayOnClick").Value.ToLower() == "true";
+        IsLooping = string.Equals(xmldata.Attribute("IsLooping").Value, "true", StringComparison.OrdinalIgnoreCase);
+        PlayOnClick = string.Equals(xmldata.Attribute("PlayOnClick").Value, "true", StringComparison.OrdinalIgnoreCase);
         var order = xmldata.Attribute("FramesOrder");
         if (order != null)
         {

@@ -12,9 +12,10 @@ namespace Sanet.Polygame.Controls
         {
             #region Fields and Properties
 
-            float _xPos = 0;
-            float _yPos = 0;
-            float XPos
+            private float _xPos = 0;
+            private float _yPos = 0;
+
+            private float XPos
             {
                 get => _xPos;
                 set
@@ -24,7 +25,8 @@ namespace Sanet.Polygame.Controls
                     if (_xPos >1) _xPos = 1;
                 }
             }
-            float YPos
+
+            private float YPos
             {
                 get => _yPos;
                 set

@@ -14,9 +14,10 @@ public class ExplosingObject:ParticleController, IDisposable
 {
 
     #region Fields
-    GameObject2D _baseObject;
 
-    Vector2 _offset;
+    private GameObject2D _baseObject;
+
+    private readonly Vector2 _offset;
     #endregion
 
     public ExplosingObject(GameObject2D baseObject,Vector2 offset)

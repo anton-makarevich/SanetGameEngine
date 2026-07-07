@@ -18,16 +18,17 @@ public class TextPrinter : GameObject2D, ITextElement
     #endregion
 
     #region Fields
-    CustomSpriteFont _spriteFont;
-    string _spriteFontName;
-    List<TextLine> _lines;
-    int _aStyle = 0;
-    Vector2 _modDevScale = SceneManager.SceneManager.RenderContext.DeviceScale;
-    bool _constantRatio;
 
-    Vector2 _dPos = Vector2.Zero;
+    private CustomSpriteFont _spriteFont;
+    private readonly string _spriteFontName;
+    private List<TextLine> _lines;
+    private int _aStyle = 0;
+    private Vector2 _modDevScale = SceneManager.SceneManager.RenderContext.DeviceScale;
+    private bool _constantRatio;
 
-    string _Text;
+    private Vector2 _dPos = Vector2.Zero;
+
+    private string _Text;
 
     private Vector2 _Position= new Vector2(5,5);
     private Rectangle _Rect = new Rectangle(0, 0, 1280, 768);
@@ -35,7 +36,7 @@ public class TextPrinter : GameObject2D, ITextElement
     private float _Rotation=0.0f;
     private float _Scale=1.0f;
     private bool _TextWrap = false;
-    int _LineSpacing=0;
+    private int _LineSpacing=0;
     private TextAlignment _Alignment = TextAlignment.TopLeft;
         
     #endregion
@@ -296,7 +297,7 @@ public class TextPrinter : GameObject2D, ITextElement
     /// <summary>
     /// recalculating text size and devide into lines if needed
     /// </summary>
-    void ProcessText()
+    private void ProcessText()
     {
         if (string.IsNullOrEmpty(Text)) return;
 
@@ -369,7 +370,7 @@ public class TextPrinter : GameObject2D, ITextElement
 
     }
 
-    Rectangle ProcessLines()
+    private Rectangle ProcessLines()
     {
         // loop through each line in the collection
         var bounds = Rect;
@@ -395,7 +396,7 @@ public class TextPrinter : GameObject2D, ITextElement
                 // find last space character in line
                 var endspace = string.Empty;
                 // deal with trailing spaces
-                if (linetext.EndsWith(" "))
+                if (linetext.EndsWith(" ", StringComparison.Ordinal))
                 {
                     endspace = " ";
                     linetext = linetext.TrimEnd();
@@ -460,7 +461,7 @@ public class TextPrinter : GameObject2D, ITextElement
 
     }
 
-    Vector2 MeasureText(string text)
+    private Vector2 MeasureText(string text)
     {
         return _spriteFont.MeasureString(text) * FontScale;
 

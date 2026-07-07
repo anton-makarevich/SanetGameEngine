@@ -22,12 +22,12 @@ public class KeyboardTracker : IKeyboardTracker
     public string PrevText { get; set; }
     public Guid TextFieldId => _textFieldId;
 
-    void KeyboardManager_OnTextFieldActivationRequest(Guid id, InputFormat type)
+    private void KeyboardManager_OnTextFieldActivationRequest(Guid id, InputFormat type)
     {
         _textFieldId = id;
     }
 
-    void KeyboardManager_OnTextFieldDeActivationRequest(Guid id)
+    private void KeyboardManager_OnTextFieldDeActivationRequest(Guid id)
     {
         if (_textFieldId == id)
             _textFieldId = Guid.Empty;

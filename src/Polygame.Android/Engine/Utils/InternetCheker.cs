@@ -5,7 +5,7 @@ namespace Sanet.Polygame.Android.Engine.Utils;
 
 public static class InternetCheker
 {
-    static Context _androidContext;
+    private static Context _androidContext;
 
     public static void Init(Context context)
     {

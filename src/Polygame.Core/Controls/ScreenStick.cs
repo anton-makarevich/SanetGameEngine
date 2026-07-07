@@ -13,16 +13,16 @@ namespace Sanet.Polygame.Controls
         {
             #region Fields and Properties
             //position of stick thumb
-            Vector2 _thumbPosition;
+            private Vector2 _thumbPosition;
             //initial thumb position at pad center
             private Vector2 _thumbOriginalPosition;
             
             //thumb boundaries
-            Vector2 _maxThumb;
-            Vector2 _minThumb;
+            private Vector2 _maxThumb;
+            private Vector2 _minThumb;
                 
             //for detection of thumb position relative to pad
-            ContainmentType t = ContainmentType.Disjoint;
+            private ContainmentType t = ContainmentType.Disjoint;
 
             /// <summary>
             /// The Value From Stick
@@ -42,24 +42,24 @@ namespace Sanet.Polygame.Controls
                 }
             }
 
-            Vector2 _padOffset = new Vector2(1050, 600);
+            private readonly Vector2 _padOffset = new Vector2(1050, 600);
 
-            private GameSprite _pad;
-            private GameSprite _thumb;
-            
-            
-            int _touchId = -1;
-            bool _mousePressed = false;
+            private readonly GameSprite _pad;
+            private readonly GameSprite _thumb;
+
+
+            private int _touchId = -1;
+            private bool _mousePressed = false;
 
             public bool IsActive => (_touchId!=-1 || _mousePressed);
 
             private BoundingSphere stickCollision;
-            
 
-            TouchLocation? stickTouch = null;
-            
 
-            float maxDistance;
+            private TouchLocation? stickTouch = null;
+
+
+            private float maxDistance;
             
             #endregion
 

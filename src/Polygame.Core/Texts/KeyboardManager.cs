@@ -25,8 +25,9 @@ public static class KeyboardManager
     #endregion
 
     #region Fields
-    static List<Guid> _registeredTextFields = new List<Guid>();
-    static Guid _currentActiveTextField;
+
+    private static readonly List<Guid> _registeredTextFields = new List<Guid>();
+    private static Guid _currentActiveTextField;
     #endregion
 
     #region Methods

@@ -41,19 +41,20 @@ public abstract class GameScene
 
     #region Fields
     //protected GameSprite _background;
-    List<GameButton> _Buttons = new List<GameButton>();
-    List<GameToggleButton> _ToggleButtons = new List<GameToggleButton>();
-    List<ITextElement> _Texts = new List<ITextElement>();
-    List<TextField> _textFields = new List<TextField>();
+    private readonly List<GameButton> _Buttons = new List<GameButton>();
+    private readonly List<GameToggleButton> _ToggleButtons = new List<GameToggleButton>();
+    private readonly List<ITextElement> _Texts = new List<ITextElement>();
+
+    private readonly List<TextField> _textFields = new List<TextField>();
     //objects with in/out animations that should play on scene change
-    List<GameSprite> _InAnimatedObjects = new List<GameSprite>();
-    List<GameSprite> _OutAnimatedObjects = new List<GameSprite>();
+    private readonly List<GameSprite> _InAnimatedObjects = new List<GameSprite>();
+    private readonly List<GameSprite> _OutAnimatedObjects = new List<GameSprite>();
 
-    ContentManager _localContentManager;
+    private readonly ContentManager _localContentManager;
 
-    DateTime _activationTime;
+    private DateTime _activationTime;
 
-    GameSprite _rootObject;
+    private readonly GameSprite _rootObject;
 
     #endregion
         
@@ -97,7 +98,7 @@ public abstract class GameScene
 
     public bool IsModalActive { get; set; }
 
-    int ActiveInAnimations
+    private int ActiveInAnimations
     {
         get
         {
@@ -325,17 +326,17 @@ public abstract class GameScene
                 {
                     case "FrameAnimation":
                         ((GameSprite)rv).FrameAnimation = new FrameAnimation(animation);
-                        if (animation.Attribute("AutoPlay").Value.ToLower() == "true")
+                        if (string.Equals(animation.Attribute("AutoPlay").Value, "true", StringComparison.OrdinalIgnoreCase))
                             ((GameSprite)rv).FrameAnimation.PlayAnimation();
                         break;
                     case "FrameAnimationMulti":
                         ((GameSprite)rv).FrameAnimation = new FrameAnimationMulti(animation);
-                        if (animation.Attribute("AutoPlay").Value.ToLower() == "true")
+                        if (string.Equals(animation.Attribute("AutoPlay").Value, "true", StringComparison.OrdinalIgnoreCase))
                             ((GameSprite)rv).FrameAnimation.PlayAnimation();
                         break;
                     case "PathAnimation":
                         ((GameSprite)rv).PathAnimation = new PathAnimation(animation);
-                        if (animation.Attribute("AutoPlay").Value.ToLower() == "true")
+                        if (string.Equals(animation.Attribute("AutoPlay").Value, "true", StringComparison.OrdinalIgnoreCase))
                             ((GameSprite)rv).PathAnimation.PlayAnimation();
                         break;
                     case "OpacityAnimation":
@@ -343,7 +344,7 @@ public abstract class GameScene
                         break;
                     case "SoundAnimation":
                         ((GameSprite)rv).SoundAnimation = new SoundAnimation(animation);
-                        if (animation.Attribute("AutoPlay").Value.ToLower() == "true")
+                        if (string.Equals(animation.Attribute("AutoPlay").Value, "true", StringComparison.OrdinalIgnoreCase))
                             ((GameSprite)rv).PathAnimation.PlayAnimation();
                         break;
 
@@ -393,7 +394,7 @@ public abstract class GameScene
         else if (repeatableableAtr != null && repeatableableAtr.Value == "true")
         {
             sprite = new GameSpriteRepeatable(query.Attribute("Asset").Value);
-            ((GameSpriteRepeatable)sprite).Orientation = (GameObjectOrientation)Enum.Parse(typeof(GameObjectOrientation), query.Attribute("RepeatMode").Value,true);
+            ((GameSpriteRepeatable)sprite).Orientation = Enum.Parse<GameObjectOrientation>(query.Attribute("RepeatMode").Value,true);
             ((GameSpriteRepeatable)sprite).RepeatCount = int.Parse(query.Attribute("RepeatCount").Value);
             if (((GameSpriteRepeatable)sprite).Orientation == GameObjectOrientation.Both)
             {
@@ -409,7 +410,7 @@ public abstract class GameScene
 
         var atr = query.Attribute("IsInFront");
         if (atr != null)
-            sprite.DrawInFrontOf3D = query.Attribute("IsInFront").Value.ToLower() == "true";
+            sprite.DrawInFrontOf3D = string.Equals(query.Attribute("IsInFront").Value, "true", StringComparison.OrdinalIgnoreCase);
 
         //initial angle
         atr = query.Attribute("Angle");
@@ -427,7 +428,7 @@ public abstract class GameScene
         atr = query.Attribute("Effect");
         if (atr != null)
         {
-            sprite.Effect = (SpriteEffects)Enum.Parse(typeof(SpriteEffects), atr.Value, true);
+            sprite.Effect = Enum.Parse<SpriteEffects>(atr.Value, true);
         }
 
         return sprite;
@@ -444,13 +445,13 @@ public abstract class GameScene
             query.Attribute("Asset").Value,
             query.Attribute("SideAsset").Value,
             float.Parse(query.Attribute("Length").Value,CultureInfo.InvariantCulture),
-            (GameObjectOrientation)Enum.Parse(typeof(GameObjectOrientation), query.Attribute("Orientation").Value, true)
+            Enum.Parse<GameObjectOrientation>(query.Attribute("Orientation").Value, true)
         );
 
         sprite.Translate(float.Parse(query.Attribute("X").Value), float.Parse(query.Attribute("Y").Value));//
         sprite.Scale(new Vector2(float.Parse(query.Attribute("ScaleX").Value, CultureInfo.InvariantCulture), float.Parse(query.Attribute("ScaleY").Value, CultureInfo.InvariantCulture)));
         sprite.PivotPoint = new Vector2(0, 0);
-        sprite.DrawInFrontOf3D = query.Attribute("IsInFront").Value.ToLower() == "true";
+        sprite.DrawInFrontOf3D = string.Equals(query.Attribute("IsInFront").Value, "true", StringComparison.OrdinalIgnoreCase);
 
         return sprite;
     }
@@ -474,7 +475,7 @@ public abstract class GameScene
         sprite.Translate(float.Parse(query.Attribute("X").Value), float.Parse(query.Attribute("Y").Value));//
         sprite.Scale(new Vector2(float.Parse(query.Attribute("ScaleX").Value, CultureInfo.InvariantCulture), float.Parse(query.Attribute("ScaleY").Value, CultureInfo.InvariantCulture)));
         sprite.PivotPoint = new Vector2(0, 0);
-        sprite.DrawInFrontOf3D = query.Attribute("IsInFront").Value.ToLower() == "true";
+        sprite.DrawInFrontOf3D = string.Equals(query.Attribute("IsInFront").Value, "true", StringComparison.OrdinalIgnoreCase);
 
         //look for color override
         var colorAtr = query.Attribute("Color");
@@ -496,7 +497,7 @@ public abstract class GameScene
         var sprite = new ScrollingPanel(
             float.Parse(query.Attribute("Width").Value, CultureInfo.InvariantCulture),
             float.Parse(query.Attribute("Height").Value, CultureInfo.InvariantCulture),
-            (GameObjectOrientation)Enum.Parse(typeof(GameObjectOrientation),query.Attribute("Orientation").Value,false)
+            Enum.Parse<GameObjectOrientation>(query.Attribute("Orientation").Value,false)
         );
         var atr = query.Attribute("AutoLayout");
         if (atr != null)
@@ -512,14 +513,14 @@ public abstract class GameScene
         sprite.Translate(float.Parse(query.Attribute("X").Value), float.Parse(query.Attribute("Y").Value));//
         sprite.Scale(new Vector2(float.Parse(query.Attribute("ScaleX").Value, CultureInfo.InvariantCulture), float.Parse(query.Attribute("ScaleY").Value, CultureInfo.InvariantCulture)));
         sprite.PivotPoint = new Vector2(0, 0);
-        sprite.DrawInFrontOf3D = query.Attribute("IsInFront").Value.ToLower() == "true";
+        sprite.DrawInFrontOf3D = string.Equals(query.Attribute("IsInFront").Value, "true", StringComparison.OrdinalIgnoreCase);
 
         return sprite;
     }
 
     protected GameButton CreateButton(XElement xmlData)
     {
-        var newButton = new GameButton(xmlData.Attribute("Asset").Value, xmlData.Attribute("IsSpriteSheet").Value.ToLower() == "true");
+        var newButton = new GameButton(xmlData.Attribute("Asset").Value, string.Equals(xmlData.Attribute("IsSpriteSheet").Value, "true", StringComparison.OrdinalIgnoreCase));
         var x = float.Parse(xmlData.Attribute("X").Value);
         var y = float.Parse(xmlData.Attribute("Y").Value);
             
@@ -549,7 +550,7 @@ public abstract class GameScene
 
         atr = xmlData.Attribute("IsEnabled");
         if (atr != null)
-            newButton.IsEnabled = atr.Value.ToLower() == "true";
+            newButton.IsEnabled = string.Equals(atr.Value, "true", StringComparison.OrdinalIgnoreCase);
 
         _Buttons.Add(newButton);
         return newButton;
@@ -561,7 +562,7 @@ public abstract class GameScene
         var atr = xmlData.Attribute("IsSpriteSheet");
 
         if (atr != null)
-            isSprite=xmlData.Attribute("IsSpriteSheet").Value.ToLower() == "true";
+            isSprite=string.Equals(xmlData.Attribute("IsSpriteSheet").Value, "true", StringComparison.OrdinalIgnoreCase);
 
         var newButton = new GameToggleButton(xmlData.Attribute("Asset").Value,isSprite);
         var x = float.Parse(xmlData.Attribute("X").Value);
@@ -587,7 +588,7 @@ public abstract class GameScene
 
         atr = xmlData.Attribute("IsEnabled");
         if (atr != null)
-            newButton.IsEnabled = atr.Value.ToLower() == "true";
+            newButton.IsEnabled = string.Equals(atr.Value, "true", StringComparison.OrdinalIgnoreCase);
 
         atr = xmlData.Attribute("Color");
         if (atr != null)
@@ -621,7 +622,7 @@ public abstract class GameScene
 
         atr = query.Attribute("Alignment");
         if (atr != null)
-            text.Alignment = (TextAlignment)Enum.Parse(typeof(TextAlignment), atr.Value, true);
+            text.Alignment = Enum.Parse<TextAlignment>(atr.Value, true);
 
         text.FontScale = float.Parse(query.Attribute("Scale").Value, CultureInfo.InvariantCulture);
             
@@ -629,7 +630,7 @@ public abstract class GameScene
         if (atr!=null)
             text.Text =atr.Value;
             
-        text.TextWrap = query.Attribute("TextWrap").Value.ToLower() == "true";
+        text.TextWrap = string.Equals(query.Attribute("TextWrap").Value, "true", StringComparison.OrdinalIgnoreCase);
 
         _Texts.Add(text);
 
@@ -653,7 +654,7 @@ public abstract class GameScene
 
         atr = query.Attribute("Alignment");
         if (atr != null)
-            text.Alignment = (TextAlignment)Enum.Parse(typeof(TextAlignment), atr.Value, true);
+            text.Alignment = Enum.Parse<TextAlignment>(atr.Value, true);
 
         atr = query.Attribute("Angle");
         if (atr != null)
@@ -665,7 +666,7 @@ public abstract class GameScene
         if (atr != null)
             text.Text = atr.Value;
 
-        text.TextWrap = query.Attribute("TextWrap").Value.ToLower() == "true";
+        text.TextWrap = string.Equals(query.Attribute("TextWrap").Value, "true", StringComparison.OrdinalIgnoreCase);
 
         _Texts.Add(text);
 
@@ -689,7 +690,7 @@ public abstract class GameScene
 
         atr = query.Attribute("Alignment");
         if (atr != null)
-            text.Alignment = (TextAlignment)Enum.Parse(typeof(TextAlignment), atr.Value, true);
+            text.Alignment = Enum.Parse<TextAlignment>(atr.Value, true);
 
         atr = query.Attribute("Angle");
         if (atr != null)
@@ -701,7 +702,7 @@ public abstract class GameScene
         if (atr != null)
             text.Text = atr.Value;
 
-        text.TextWrap = query.Attribute("TextWrap").Value.ToLower() == "true";
+        text.TextWrap = string.Equals(query.Attribute("TextWrap").Value, "true", StringComparison.OrdinalIgnoreCase);
 
         _Texts.Add(text);
 
@@ -725,7 +726,7 @@ public abstract class GameScene
 
         atr = query.Attribute("InputFormat");
         if (atr != null)
-            text.InputFormat = (InputFormat)Enum.Parse(typeof(InputFormat), atr.Value, true);
+            text.InputFormat = Enum.Parse<InputFormat>(atr.Value, true);
 
         atr = query.Attribute("MaxChars");
         if (atr != null)
@@ -765,7 +766,7 @@ public abstract class GameScene
 
         atr = query.Attribute("InputFormat");
         if (atr != null)
-            text.InputFormat = (InputFormat)Enum.Parse(typeof(InputFormat), atr.Value, true);
+            text.InputFormat = Enum.Parse<InputFormat>(atr.Value, true);
 
         atr = query.Attribute("MaxChars");
         if (atr != null)
@@ -940,7 +941,7 @@ public abstract class GameScene
         }
     }
 
-    void LoadCustomObject(GameObject2D obj)
+    private void LoadCustomObject(GameObject2D obj)
     {
         if (obj.IsCustomContent)
             obj.LoadContent(_localContentManager, true);
@@ -1057,7 +1058,7 @@ public abstract class GameScene
         _rootObject.InTranslation.PlayAnimation();
     }
 
-    void TranslationInCompleted()
+    private void TranslationInCompleted()
     {
         Mode = GameSceneModes.Normal;
         _rootObject.Translate(0, 0);

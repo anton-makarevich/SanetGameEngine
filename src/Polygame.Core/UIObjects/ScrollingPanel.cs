@@ -50,29 +50,29 @@ public class ScrollingPanel :GameObject2D
 
 	#region Fields
 
-	GameSpriteTouchable _touchProvider = new GameSpriteTouchable("EmptyPixel");
-	GameSprite _container = new GameSprite("EmptyPixel");
+	private readonly GameSpriteTouchable _touchProvider = new GameSpriteTouchable("EmptyPixel");
+	private readonly GameSprite _container = new GameSprite("EmptyPixel");
 
-	ScrollBar _verticalScrollBar;
+	private ScrollBar _verticalScrollBar;
 
-	RasterizerState _rasterizerState = new RasterizerState() { ScissorTestEnable = true };
+	private readonly RasterizerState _rasterizerState = new RasterizerState() { ScissorTestEnable = true };
 
-	Vector2 _lastDistance=Vector2.Zero;
-	Vector2 _totalDistance = Vector2.Zero;
+	private Vector2 _lastDistance=Vector2.Zero;
+	private Vector2 _totalDistance = Vector2.Zero;
 
-	bool _autoLayout = true;
+	private bool _autoLayout = true;
 
-	bool _isFixedStep = false;
+	private bool _isFixedStep = false;
 
-	int _minStep;
-	int _maxStep;
+	private int _minStep;
+	private int _maxStep;
 
-	int _currentStep=1;
-	Vector2 _loc;
+	private int _currentStep=1;
+	private Vector2 _loc;
 
-	float _height;
+	private float _height;
 
-	Rectangle _cissorRectangle;
+	private Rectangle _cissorRectangle;
 	#endregion
 
 	#region Properties
@@ -182,7 +182,7 @@ public class ScrollingPanel :GameObject2D
 		set => _isFixedStep = value;
 	}
 
-	int InnerCurrentStep
+	private int InnerCurrentStep
 	{
 		get => _currentStep;
 		set
@@ -249,17 +249,18 @@ public class ScrollingPanel :GameObject2D
 	#endregion
 
 	#region Scrolling methods
-	void _touchProvider_OnClick()
+
+	private void _touchProvider_OnClick()
 	{
 
 	}
 
-	void _touchProvider_OnLeave()
+	private void _touchProvider_OnLeave()
 	{
 
 	}
 
-	void _touchProvider_OnEnter()
+	private void _touchProvider_OnEnter()
 	{
 
 	}
@@ -353,7 +354,7 @@ public class ScrollingPanel :GameObject2D
 		}
 	}
 
-	void CheckBoundsForChild(GameObject2D child)
+	private void CheckBoundsForChild(GameObject2D child)
 	{
 		//var pos = child.LocalPosition;
 		if (ItemHeightOverride != 0)
@@ -607,7 +608,7 @@ public class ScrollingPanel :GameObject2D
 
 	}
 
-	void SetReturnAnimation(Vector2 pos1, Vector2 pos2, bool force = false)
+	private void SetReturnAnimation(Vector2 pos1, Vector2 pos2, bool force = false)
 	{
 		if (DisableAnimations && !force)
 		{ 

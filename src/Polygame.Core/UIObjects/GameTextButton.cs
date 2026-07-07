@@ -27,13 +27,14 @@ public class GameTextButton :GameObject2D
     #endregion
 
     #region Fields
-    Vector2 _size;
 
-    GameButton _button;
-    TextBlockStandard _text;
+    private Vector2 _size;
 
-    Color _textActiveColor;
-    Color _textNormalColor;
+    private readonly GameButton _button;
+    private readonly TextBlockStandard _text;
+
+    private Color _textActiveColor;
+    private readonly Color _textNormalColor;
     #endregion
 
     #region Properties

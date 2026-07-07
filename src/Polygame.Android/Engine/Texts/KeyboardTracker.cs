@@ -35,9 +35,10 @@ public class KeyboardTracker : IKeyboardTracker
     #endregion
 
     #region Fields
-    Guid _textFieldId;
-    EditText _textBox;
-    Activity _activity;
+
+    private Guid _textFieldId;
+    private readonly EditText _textBox;
+    private readonly Activity _activity;
 
 
     #endregion
@@ -51,7 +52,7 @@ public class KeyboardTracker : IKeyboardTracker
 
     #region Methods
 
-    void KeyboardManager_OnTextFieldActivationRequest(Guid id, InputFormat type)
+    private void KeyboardManager_OnTextFieldActivationRequest(Guid id, InputFormat type)
     {
         _textFieldId = id;
 
@@ -66,7 +67,7 @@ public class KeyboardTracker : IKeyboardTracker
 
     }
 
-    InputTypes ConvertType(InputFormat type)
+    private InputTypes ConvertType(InputFormat type)
     {
         switch (type)
         {
@@ -77,7 +78,7 @@ public class KeyboardTracker : IKeyboardTracker
         }
     }
 
-    void KeyboardManager_OnTextFieldDeActivationRequest(Guid id)
+    private void KeyboardManager_OnTextFieldDeActivationRequest(Guid id)
     {
         if (_textFieldId == id)
         {
@@ -86,7 +87,7 @@ public class KeyboardTracker : IKeyboardTracker
         }
     }
 
-    void _textBox_TextChanged(object sender, TextChangedEventArgs e)
+    private void _textBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         //actually in android it's more easy to use Properties of e arg
         //but to keep it easier to maintain through different platforms, code is the same everuwhere.

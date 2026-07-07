@@ -44,10 +44,11 @@ public class Photo:GameSpriteTouchable
     #endregion
 
     #region Fields
-    GameSprite _ltAnchor;
-    GameSprite _rtAnchor;
-    GameSprite _lbAnchor;
-    GameSprite _rbAnchor;
+
+    private readonly GameSprite _ltAnchor;
+    private readonly GameSprite _rtAnchor;
+    private readonly GameSprite _lbAnchor;
+    private readonly GameSprite _rbAnchor;
     #endregion
 
     #region Properties
@@ -126,7 +127,7 @@ public class Photo:GameSpriteTouchable
     }
 
 
-    Vector2 GetScale(Vector2 distance)
+    private Vector2 GetScale(Vector2 distance)
     {
         var size = new Vector2(Width, Height);
         var actSize = size * LocalScale;

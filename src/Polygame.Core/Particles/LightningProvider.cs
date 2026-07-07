@@ -11,8 +11,8 @@ public static class LightningProvider
     public static Texture2D HalfCircle;
     public static Texture2D LightningSegment;
 
-    static List<LightningBolt> _bolts = new List<LightningBolt>();
-    static List<LightningObject> _lightningObjects = new List<LightningObject>();
+    private static readonly List<LightningBolt> _bolts = new List<LightningBolt>();
+    private static readonly List<LightningObject> _lightningObjects = new List<LightningObject>();
 
         
     public static void Load(ContentManager content)
@@ -50,8 +50,17 @@ public static class LightningProvider
         foreach (var bolt in _bolts)
             bolt.Update();
 
-        _lightningObjects = _lightningObjects.Where(f => f.NumberOfStrikes > 0).ToList();
-        _bolts = _bolts.Where(f => !f.IsComplete).ToList();
+        for (var i = _lightningObjects.Count - 1; i >= 0; i--)
+        {
+            if (_lightningObjects[i].NumberOfStrikes <= 0)
+                _lightningObjects.RemoveAt(i);
+        }
+
+        for (var i = _bolts.Count - 1; i >= 0; i--)
+        {
+            if (_bolts[i].IsComplete)
+                _bolts.RemoveAt(i);
+        }
     }
 
     public static void Draw(RenderContext renderContext)
@@ -77,7 +86,7 @@ public static class LightningProvider
             _lightningObjects.Remove(lightning);
     }
 
-    static bool IsActiveLightning(string name)
+    private static bool IsActiveLightning(string name)
     {
         return _lightningObjects.FirstOrDefault(f => f.Name == name) != null;
     }

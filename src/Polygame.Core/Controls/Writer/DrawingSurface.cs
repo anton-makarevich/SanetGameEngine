@@ -15,22 +15,23 @@ namespace Sanet.Polygame.Controls.Writer;
 public class DrawingSurface : GameObject2D
 {
     #region Fields
-    GameSpriteTouchable _background;
-    int _width;
-    int _height;
 
-    Vector2 _lastAddedPoint=Vector2.Zero;
+    private GameSpriteTouchable _background;
+    private readonly int _width;
+    private readonly int _height;
 
-    Color _currentColor=Color.OrangeRed;
-    float _currentThickness = 1;
+    private Vector2 _lastAddedPoint=Vector2.Zero;
 
-    bool _isEditable;
+    private Color _currentColor=Color.OrangeRed;
+    private float _currentThickness = 1;
 
-    List<TextField> _textFields = new List<TextField>();
-    List<Photo> _photos = new List<Photo>();
+    private bool _isEditable;
 
-    List<Stroke> _undoObjects = new List<Stroke>();
-    Stroke _currentObjects = new Stroke();
+    private readonly List<TextField> _textFields = new List<TextField>();
+    private readonly List<Photo> _photos = new List<Photo>();
+
+    private readonly List<Stroke> _undoObjects = new List<Stroke>();
+    private Stroke _currentObjects = new Stroke();
                 
     #endregion
 
@@ -325,7 +326,8 @@ public class DrawingSurface : GameObject2D
     #endregion
 
     #region private Methods
-    void PrepareBackground()
+
+    private void PrepareBackground()
     {
         var graphicsDevice = SceneManager.SceneManager.RenderContext.GraphicsDevice;
         RenderTarget2D result;
@@ -354,7 +356,7 @@ public class DrawingSurface : GameObject2D
         _background.Touch.OnLeave += ToUndo;
     }
 
-    void ToUndo()
+    private void ToUndo()
     {
         if (_currentObjects.Children.Any())
         {

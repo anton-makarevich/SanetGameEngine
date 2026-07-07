@@ -10,10 +10,11 @@ namespace Sanet.Polygame.BaseObjects;
 public class RenderContext
 {
     #region Fields
-    Vector2 _viewSize ;
-    Vector2 _deviceScale;
 
-    Dictionary<string,ContentManager> _contentManagers;
+    private Vector2 _viewSize ;
+    private Vector2 _deviceScale;
+
+    private Dictionary<string,ContentManager> _contentManagers;
     #endregion
 
     #region Properties

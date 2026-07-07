@@ -33,8 +33,8 @@ public static class Helpers
     public static bool IsPointInPolygon(List<Vector2> polygon, Vector2 testPoint)
     {
         var result = false;
-        var j = polygon.Count() - 1;
-        for (var i = 0; i < polygon.Count(); i++)
+        var j = polygon.Count - 1;
+        for (var i = 0; i < polygon.Count; i++)
         {
             if (polygon[i].Y < testPoint.Y && polygon[j].Y >= testPoint.Y || polygon[j].Y < testPoint.Y && polygon[i].Y >= testPoint.Y)
             {
@@ -120,7 +120,7 @@ public static class Helpers
 
     public static Color GetColorFromText(string text)
     {
-        if (text.StartsWith("#"))
+        if (text.StartsWith("#", StringComparison.Ordinal))
             return GetColorFromHexValue(text);
         var ints = GetIntsFromText(text);
         if (ints.Count == 4) 
@@ -156,7 +156,7 @@ public static class Helpers
         return new Rectangle();
     }
 
-    static List<int> GetIntsFromText(string text)
+    private static List<int> GetIntsFromText(string text)
     {
         var rv = new List<int>();
         var textArray = text.Split(new char[] { ';' });

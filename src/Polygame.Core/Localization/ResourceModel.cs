@@ -9,9 +9,9 @@ namespace Sanet.Polygame.Localization;
 
 public class ResourceModel
 {
-    Dictionary<string,XDocument> _strings;
-    string[] _supportedLocales;
-    int _loadedLocales = 0;
+    private readonly Dictionary<string,XDocument> _strings;
+    private readonly string[] _supportedLocales;
+    private int _loadedLocales = 0;
 
     public ResourceModel(string[] supportedLocales)
     {

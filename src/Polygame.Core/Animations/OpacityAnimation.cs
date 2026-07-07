@@ -14,15 +14,15 @@ public class OpacityAnimation : AnimationBase
 {
     #region Fields
 
-    float _inFrom;
-    float _inTo;
+    private readonly float _inFrom;
+    private readonly float _inTo;
 
-    float _opacityFrom;
-    float _opacityTo;
-    float _currentOpacity = 1;
-    int _animationTime;
-    int _elapsedTime;
-    int _flashTimes;
+    private float _opacityFrom;
+    private float _opacityTo;
+    private float _currentOpacity = 1;
+    private readonly int _animationTime;
+    private int _elapsedTime;
+    private int _flashTimes;
 
     public event Action Completed;
 

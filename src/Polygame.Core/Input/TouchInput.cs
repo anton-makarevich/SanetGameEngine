@@ -22,33 +22,33 @@ public class TouchInput : IGameObject
 	public event Action OnEnter;
 	public event Action OnLeave;
 
-	const int MinimalDistance = 1;
+	private const int MinimalDistance = 1;
 	public const int MaximumClickTime = 900;
 
-	static bool _abortLoop;
+	private static bool _abortLoop;
 
-	GameObject2D _parent;
+	private readonly GameObject2D _parent;
 	private bool _isPressed;
 
 	//1st point
 	private int _touchId;
-	Vector2 _initialPoint;
-	Vector2 _pressPoint;
+	private Vector2 _initialPoint;
+	private Vector2 _pressPoint;
 
 	//second point (if has)
 	private int _touchId2;
-	Vector2 _initialPoint2;
-	Vector2 _pressPoint2;
+	private Vector2 _initialPoint2;
+	private Vector2 _pressPoint2;
 
-	DateTime _enterTime;
+	private DateTime _enterTime;
 
-	int _touchCounter ;
+	private int _touchCounter ;
 
-	DateTime _clickTime;
+	private DateTime _clickTime;
 
-	bool _isCanceled;
+	private bool _isCanceled;
 
-	Vector2 _lastDistance;
+	private Vector2 _lastDistance;
 
 	public int PressTime
 	{
@@ -350,7 +350,7 @@ public class TouchInput : IGameObject
 		#endregion
 	}
 
-	void SetDirection(Vector2 distance, int point)
+	private void SetDirection(Vector2 distance, int point)
 	{
 		if (point==1)
 		{

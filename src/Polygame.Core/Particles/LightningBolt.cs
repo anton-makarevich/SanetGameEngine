@@ -8,7 +8,7 @@ namespace Sanet.Polygame.Particles;
 
 public class LightningBolt
 {
-    public List<LightningLine> Segments = new List<LightningLine>();
+    public List<LightningLine> Segments { get; } = new();
     public Vector2 Start => Segments[0].A;
     public Vector2 End => Segments.Last().B;
     public bool IsComplete => Alpha <= 0;
@@ -18,7 +18,7 @@ public class LightningBolt
     public float FadeOutRate { get; set; }
     public Color Tint { get; set; }
 
-    static Random _rand = new Random();
+    private static readonly Random _rand = new Random();
 
     public LightningBolt(Vector2 source, Vector2 dest) : this(source, dest, new Color(0.9f, 0.8f, 1f)) { }
 
@@ -48,12 +48,13 @@ public class LightningBolt
 
     protected static List<LightningLine> CreateBolt(Vector2 source, Vector2 dest, float thickness)
     {
-        var results = new List<LightningLine>();
         var tangent = dest - source;
         var normal = Vector2.Normalize(new Vector2(tangent.Y, -tangent.X));
         var length = tangent.Length();
+        var capacity = (int)(length / 4) + 2;
 
-        var positions = new List<float>();
+        var results = new List<LightningLine>(capacity);
+        var positions = new List<float>(capacity);
         positions.Add(0);
 
         for (var i = 0; i < length / 4; i++)

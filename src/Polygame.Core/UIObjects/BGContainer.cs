@@ -42,11 +42,11 @@ public class BGContainer : GameObject2D
     #endregion
 
     #region Fields
-    private GameSprite _mainPart;
-    private GameSprite _firstPart;
-    private GameSprite _lastPart;
+    private readonly GameSprite _mainPart;
+    private readonly GameSprite _firstPart;
+    private readonly GameSprite _lastPart;
 
-    float _length;
+    private float _length;
     #endregion
 
     #region Properties
@@ -108,7 +108,7 @@ public class BGContainer : GameObject2D
         }
     }
 
-    void UpdateAssets()
+    private void UpdateAssets()
     {
         _firstPart.Translate(Vector2.Zero);
         if (Orientation == GameObjectOrientation.Vertical)
