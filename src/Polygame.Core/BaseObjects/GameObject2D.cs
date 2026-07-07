@@ -234,9 +234,8 @@ public class GameObject2D:IGameObject
 
         if (!Children.Contains((GameObject2D)child))
         {
-            //if already a child in other object, remove from there
-            if (((GameObject2D)child).Parent != null)
-                ((GameObject2D)child).Parent.RemoveChild(((GameObject2D)child).Parent);
+            //if already a child in another object, remove from there
+            ((GameObject2D)child).Parent?.RemoveChild((GameObject2D)child);
 
             if (child.Z == 0)
                 child.Z = Z;
@@ -248,7 +247,7 @@ public class GameObject2D:IGameObject
 
     public GameObject2D GetChildByName(string name) 
     {
-        var rv = Children.Where(f =>  f.Name == name).FirstOrDefault() ;
+        var rv = Children.FirstOrDefault(f => f.Name == name) ;
         if (rv != null)
             return rv;
         foreach (var child in Children)
