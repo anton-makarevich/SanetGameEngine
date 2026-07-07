@@ -23,13 +23,13 @@ jobs:
           dotnet-version: '10.0.x'
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore src/Polygame.Core/Polygame.Core.csproj && dotnet restore tests/Polygame.Core.Tests/Polygame.Core.Tests.csproj
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build src/Polygame.Core/Polygame.Core.csproj --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test --configuration Release --no-build
+        run: dotnet test tests/Polygame.Core.Tests/Polygame.Core.Tests.csproj --configuration Release --no-build
 
       - name: Set VersionSuffix from tag
         if: startsWith(github.ref, 'refs/tags/v')

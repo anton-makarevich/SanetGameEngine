@@ -29,7 +29,7 @@ jobs:
         run: dotnet workload install ios maui-ios
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore src/Polygame.iOS/Polygame.iOS.csproj
 
       - name: Build
         run: dotnet build src/Polygame.iOS/Polygame.iOS.csproj --configuration Release --no-restore

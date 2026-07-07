@@ -29,7 +29,7 @@ jobs:
         run: dotnet workload install android maui-android
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore src/Polygame.Android/Polygame.Android.csproj
 
       - name: Build
         run: dotnet build src/Polygame.Android/Polygame.Android.csproj --configuration Release --no-restore
