@@ -22,24 +22,25 @@ public class TextBlock : GameObject2D, ITextElement
     #endregion
 
     #region Fields
-    CustomSpriteFont _spriteFont;
-    string _spriteFontName;
-        
-    string _Text;
 
-    Vector2 _fontScale = Vector2.One;
+    private CustomSpriteFont _spriteFont;
+    private readonly string _spriteFontName;
 
-    List<TextLine> _lines;
+    private string _Text;
+
+    private Vector2 _fontScale = Vector2.One;
+
+    private List<TextLine> _lines;
                         
     private Rectangle _rect = new Rectangle(0, 0, 1280, 768);
     private Color _TextColor = Color.White;
 
-    int _aStyle = 0;
+    private int _aStyle = 0;
 
-    int _LineSpacing = 0;
+    private int _LineSpacing = 0;
     private TextAlignment _Alignment = TextAlignment.TopLeft;
 
-    bool _textWrap;
+    private bool _textWrap;
 
     #endregion
 
@@ -317,9 +318,9 @@ public class TextBlock : GameObject2D, ITextElement
         }
         ActualHeight = pos.Y;
     }
-         
 
-    Rectangle ProcessLines()
+
+    private Rectangle ProcessLines()
     {
         // loop through each line in the collection
         var bounds = Rect;
@@ -351,12 +352,12 @@ public class TextBlock : GameObject2D, ITextElement
                 // find last space character in line
                 var endspace = string.Empty;
                 // deal with trailing spaces
-                if (lineText.EndsWith(" "))
+                if (lineText.EndsWith(" ", StringComparison.Ordinal))
                 {
                     endspace = " ";
                     lineText = line.Text.TrimEnd();
                 }
-                else if (lineText.EndsWith("-"))
+                else if (lineText.EndsWith("-", StringComparison.Ordinal))
                 {
                     endspace = "-";
                         
@@ -438,7 +439,7 @@ public class TextBlock : GameObject2D, ITextElement
         return bounds;
     }
 
-    Color _c;
+    private Color _c;
     public override void Update(RenderContext renderContext)
     {
         base.Update(renderContext);

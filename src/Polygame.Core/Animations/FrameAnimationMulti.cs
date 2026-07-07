@@ -15,7 +15,7 @@ public class FrameAnimationMulti : FrameAnimation
     #region Fields
         
     //collections of extra textures names
-    List<string> _extraTexturesNames = new List<string>();
+    private readonly List<string> _extraTexturesNames = new List<string>();
                 
     #endregion
 

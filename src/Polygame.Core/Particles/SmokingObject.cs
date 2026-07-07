@@ -11,9 +11,10 @@ public class SmokingObject:ParticleController, IDisposable
 {
 
     #region Fields
-    GameObject2D _baseObject;
 
-    Vector2 _offset;
+    private GameObject2D _baseObject;
+
+    private readonly Vector2 _offset;
     #endregion
 
     /// <summary>

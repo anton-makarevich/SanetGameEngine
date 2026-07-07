@@ -18,8 +18,9 @@ namespace Sanet.Polygame.Texts;
 public class CustomSpriteFont : GameObject2D
 {
     #region Fields
-    Dictionary<char, Rectangle> _charPositions= new Dictionary<char, Rectangle>();
-    GameSprite _sprite;
+
+    private readonly Dictionary<char, Rectangle> _charPositions= new Dictionary<char, Rectangle>();
+    private readonly GameSprite _sprite;
     #endregion
 
     #region Properties

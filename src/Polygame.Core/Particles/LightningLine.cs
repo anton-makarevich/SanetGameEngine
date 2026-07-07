@@ -11,16 +11,16 @@ public class LightningLine
     public Vector2 B;
     public float Thickness;
 
-    Vector2 _tangent;
-    const float ImageThickness = 8;
+    private readonly Vector2 _tangent;
+    private const float ImageThickness = 8;
 
-    float _thicknessScale;
+    private readonly float _thicknessScale;
 
-    float _theta;
+    private readonly float _theta;
 
-    Vector2 _capOrigin;
-    Vector2 _middleOrigin;
-    Vector2 _middleScale;
+    private readonly Vector2 _capOrigin;
+    private readonly Vector2 _middleOrigin;
+    private readonly Vector2 _middleScale;
 
     public LightningLine() { }
     public LightningLine(Vector2 a, Vector2 b, float thickness)

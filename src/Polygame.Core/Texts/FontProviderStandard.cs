@@ -7,8 +7,8 @@ namespace Sanet.Polygame.Texts;
 
 public static class FontProviderStandard
 {
-    static List<SpriteFont> _fonts = new List<SpriteFont>();
-    static List<string> _fontNames = new List<string>();
+    private static readonly List<SpriteFont> _fonts = new List<SpriteFont>();
+    private static readonly List<string> _fontNames = new List<string>();
 
     public static bool IsLoaded
     {

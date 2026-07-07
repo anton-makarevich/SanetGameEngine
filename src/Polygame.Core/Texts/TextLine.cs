@@ -20,12 +20,13 @@ public class TextLine:GameObject2D
     #endregion
 
     #region Fields
-    string _text;
-    Vector2 _size;
-        
-    CustomSpriteFont _spriteFont;
 
-    GameSprite _sprite;
+    private string _text;
+    private Vector2 _size;
+
+    private readonly CustomSpriteFont _spriteFont;
+
+    private GameSprite _sprite;
     #endregion
 
     #region Properties
@@ -58,7 +59,8 @@ public class TextLine:GameObject2D
     #endregion
 
     #region Methods
-    Vector2 MeasureText()
+
+    private Vector2 MeasureText()
     {
         var x = 0;
         var y = 0;

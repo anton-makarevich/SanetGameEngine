@@ -17,17 +17,17 @@ namespace Sanet.Polygame.Particles;
 /// </summary>
 public static class SmokeProvider
 {
-    static List<GameSprite> _smokes;
+    private static List<GameSprite> _smokes;
 
-    static List<SmokingObject> _smokingObjects = new List<SmokingObject>();
+    private static readonly List<SmokingObject> _smokingObjects = new List<SmokingObject>();
 
-    static IGameObject _smokingObject;
+    private static IGameObject _smokingObject;
 
-    static Random _rand = new Random();
+    private static readonly Random _rand = new Random();
 
     //we have touse the same texture for all particles as it's faster
     //than separate texture instances
-    static Texture2D _smokeTexture;
+    private static Texture2D _smokeTexture;
               
 
     public static void Initialize()
@@ -85,8 +85,10 @@ public static class SmokeProvider
         toRemove.Clear();
         toRemove = null;
 
-        foreach (var smoke in _smokes.Where(f => f.CanDraw))
+        for (var i = 0; i < _smokes.Count; i++)
         {
+            var smoke = _smokes[i];
+            if (!smoke.CanDraw) continue;
             smoke.Update(context);
             var location = smoke.LocalPosition;
             var dv = new Vector2(-1,0.5f);
@@ -100,7 +102,7 @@ public static class SmokeProvider
         }
     }
 
-    static void GenerateSmoke(Vector2 position, float scale)
+    private static void GenerateSmoke(Vector2 position, float scale)
     {
         float speed = 4;
         var smoke = _smokes.FirstOrDefault(f => !f.CanDraw);
@@ -131,8 +133,12 @@ public static class SmokeProvider
         if (_smokingObject == null)
             return;
 
-        foreach (var smoke in _smokes.Where(f => f.CanDraw))
-            smoke.Draw(context);
+        for (var i = 0; i < _smokes.Count; i++)
+        {
+            var smoke = _smokes[i];
+            if (smoke.CanDraw)
+                smoke.Draw(context);
+        }
     }
 
     public static void StartSmoking(IGameObject smokingObject)

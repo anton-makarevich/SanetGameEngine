@@ -55,17 +55,17 @@ public class BGPanel : GameObject2D
     #endregion
 
     #region Fields
-    private GameSprite _mainPart;
+    private readonly GameSprite _mainPart;
 
-    private GameSprite _leftPart;
-    private GameSprite _topPart;
-    private GameSprite _bottomPart;
-    private GameSprite _rightPart;
+    private readonly GameSprite _leftPart;
+    private readonly GameSprite _topPart;
+    private readonly GameSprite _bottomPart;
+    private readonly GameSprite _rightPart;
 
-    private GameSprite _corneTL;
-    private GameSprite _corneTR;
-    private GameSprite _corneBL;
-    private GameSprite _corneBR;
+    private readonly GameSprite _corneTL;
+    private readonly GameSprite _corneTR;
+    private readonly GameSprite _corneBL;
+    private readonly GameSprite _corneBR;
     #endregion
 
     #region Properties
@@ -128,7 +128,7 @@ public class BGPanel : GameObject2D
 
     }
 
-    void RecalculateSize()
+    private void RecalculateSize()
     {
         _mainPart.Scale(MainWidth, MainHeight);
 

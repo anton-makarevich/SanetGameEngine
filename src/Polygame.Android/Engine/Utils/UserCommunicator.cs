@@ -6,7 +6,7 @@ namespace Sanet.Polygame.Android.Engine.Utils;
 
 public static class UserCommunicator
 {
-    static Context _activity;
+    private static Context _activity;
 
     public static void Init(Context activity)
     {

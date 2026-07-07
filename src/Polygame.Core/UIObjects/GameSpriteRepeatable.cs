@@ -26,7 +26,7 @@ public class GameSpriteRepeatable : GameSprite
         }
     }
 
-    void GenerateClones(ContentManager contentManager)
+    private void GenerateClones(ContentManager contentManager)
     {
         Children.Clear();
         var renderContext = SceneManager.SceneManager.RenderContext;

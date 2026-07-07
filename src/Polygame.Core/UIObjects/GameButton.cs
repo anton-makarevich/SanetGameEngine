@@ -24,7 +24,7 @@ public class GameButton : GameSpriteTouchable
 
     private string _buttonClickSound;
 
-    private bool _isSpriteSheet;
+    private readonly bool _isSpriteSheet;
     protected bool _isAutoDark = false;
 
     protected Color _normalColor;

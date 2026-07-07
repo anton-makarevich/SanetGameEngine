@@ -5,8 +5,8 @@ namespace Sanet.Polygame.UIObjects;
 
 public class ScrollBar:GameObject2D
 {
-    BGContainer _bg;
-    BGContainer _slider;
+    private readonly BGContainer _bg;
+    private readonly BGContainer _slider;
 
     public ScrollBar(BGContainer bg, BGContainer slider)
     {

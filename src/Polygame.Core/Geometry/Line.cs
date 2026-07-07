@@ -12,10 +12,10 @@ public class Line
     private Vector2 _point1;
     private Vector2 _point2;
 
-    float _length;
-    float _k;
-    float _b;
-    float _angle;
+    private readonly float _length;
+    private readonly float _k;
+    private readonly float _b;
+    private readonly float _angle;
         
     public Line(Vector2 p1, Vector2 p2)
     {
@@ -58,7 +58,7 @@ public class Line
 
     public float K => _k;
 
-    int Quadrant
+    private int Quadrant
     {
         get
         {

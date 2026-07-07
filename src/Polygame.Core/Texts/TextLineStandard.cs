@@ -20,10 +20,11 @@ public class TextLineStandard:GameObject2D
     #endregion
 
     #region Fields
-    string _text;
-    Vector2 _size;
-        
-    SpriteFont _spriteFont;
+
+    private string _text;
+    private Vector2 _size;
+
+    private readonly SpriteFont _spriteFont;
 
     #endregion
 
@@ -56,7 +57,8 @@ public class TextLineStandard:GameObject2D
     #endregion
 
     #region Methods
-    Vector2 MeasureText()
+
+    private Vector2 MeasureText()
     {
         return _spriteFont.MeasureString(_text);
     }

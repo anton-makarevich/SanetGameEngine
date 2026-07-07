@@ -18,21 +18,26 @@ namespace Sanet.Polygame.Particles;
 /// </summary>
 public static class ExplosionProvider
 {
-    static List<GameSprite> _explosionParticles;
+    private static List<GameSprite> _explosionParticles;
 
-    static List<ExplosingObject> _explosingObjects = new List<ExplosingObject>();
+    private static readonly List<ExplosingObject> _explosingObjects = new List<ExplosingObject>();
 
-    static Random _rand = new Random();
+    private static readonly Random _rand = new Random();
 
     //we have touse the same texture for all particles as it's faster
     //than separate texture instances
-    static Texture2D _explosionTexture;
+    private static Texture2D _explosionTexture;
 
     public static bool IsDrawing
     {
         get
         {
-            return _explosionParticles.Any(f => f.CanDraw);
+            for (var i = 0; i < _explosionParticles.Count; i++)
+            {
+                if (_explosionParticles[i].CanDraw)
+                    return true;
+            }
+            return false;
         }
     }
 
@@ -79,22 +84,15 @@ public static class ExplosionProvider
         toRemove.Clear();
         toRemove = null;
 
-        foreach (var explosionParticle in _explosionParticles.Where(f => f.CanDraw))
+        for (var i = 0; i < _explosionParticles.Count; i++)
         {
+            var explosionParticle = _explosionParticles[i];
+            if (!explosionParticle.CanDraw) continue;
             explosionParticle.Update(context);
-            //var location = explosionParticle.LocalPosition;
-            //Vector2 dv = new Vector2(-1,_plane.Gravity*0.5f)*_plane.Speed;
-            //location+=dv;
-            //if (location.X < 0)
-            //    explosionParticle.CanDraw = false;
-            //else
-            //{
-            //    explosionParticle.PathAnimation.UpdateWorldPosition(dv);
-            //}
         }
     }
 
-    static void GenerateExplosion(Vector2 position)
+    private static void GenerateExplosion(Vector2 position)
     {
         float speed = _rand.Next(30,50);
         const int radius = 200;
@@ -135,8 +133,12 @@ public static class ExplosionProvider
     public static void Draw(RenderContext context)
     {
 
-        foreach (var smoke in _explosionParticles.Where(f => f.CanDraw))
-            smoke.Draw(context);
+        for (var i = 0; i < _explosionParticles.Count; i++)
+        {
+            var smoke = _explosionParticles[i];
+            if (smoke.CanDraw)
+                smoke.Draw(context);
+        }
     }
               
 
@@ -147,7 +149,11 @@ public static class ExplosionProvider
 
     public static void Clear()
     {
-        foreach (var smoke in _explosionParticles.Where(f => f.CanDraw))
-            smoke.CanDraw = false;
+        for (var i = 0; i < _explosionParticles.Count; i++)
+        {
+            var smoke = _explosionParticles[i];
+            if (smoke.CanDraw)
+                smoke.CanDraw = false;
+        }
     }
 }

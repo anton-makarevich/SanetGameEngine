@@ -18,17 +18,18 @@ public class PathAnimation : AnimationBase
 {
     public event Action Completed;
     #region Fields
-    int _currentPointIndex;
 
-    int _nextPointIndex;
+    private int _currentPointIndex;
 
-    Vector2 _position;
-    float _speed;
-    float _rotation;
-    Vector2 _scale;
+    private int _nextPointIndex;
+
+    private Vector2 _position;
+    private float _speed;
+    private float _rotation;
+    private Vector2 _scale;
 
     //wether to move to first point on complete
-    bool _restart = true;
+    private bool _restart = true;
 
     //bool _isreversing = false;
     #endregion
@@ -59,9 +60,9 @@ public class PathAnimation : AnimationBase
             _nextPointIndex = _currentPointIndex + 1;
         }
         _position = Points[_currentPointIndex].Position;
-        IsLooping = xmldata.Attribute("IsLooping").Value.ToLower() == "true";
-        IsClosed = xmldata.Attribute("IsClosed").Value.ToLower() == "true";
-        PlayOnClick = xmldata.Attribute("PlayOnClick").Value.ToLower() == "true";
+        IsLooping = string.Equals(xmldata.Attribute("IsLooping").Value, "true", StringComparison.OrdinalIgnoreCase);
+        IsClosed = string.Equals(xmldata.Attribute("IsClosed").Value, "true", StringComparison.OrdinalIgnoreCase);
+        PlayOnClick = string.Equals(xmldata.Attribute("PlayOnClick").Value, "true", StringComparison.OrdinalIgnoreCase);
 
     }
 
@@ -211,7 +212,7 @@ public class PathAnimation : AnimationBase
             point.Position += delta;
     }
 
-    static float GetInterpolatedValue(float value1, float value2, float dist, float distTo)
+    private static float GetInterpolatedValue(float value1, float value2, float dist, float distTo)
     {
         var rv = value1 + (distTo / dist) * (value2 - value1);
         return rv;

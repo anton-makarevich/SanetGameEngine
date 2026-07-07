@@ -35,16 +35,16 @@ public class LineSegment : GameObject2D
         
 
     #region Fields
-    private GameSprite _mainPart;
-    private GameSprite _leftPart;
-    private GameSprite _rightPart;
-                
-    float _thickness = 1;
+    private readonly GameSprite _mainPart;
+    private readonly GameSprite _leftPart;
+    private readonly GameSprite _rightPart;
 
-    private Line _line;
+    private float _thickness = 1;
 
-    Color _color;
-    float _distance;
+    private readonly Line _line;
+
+    private Color _color;
+    private float _distance;
                                  
     #endregion
 

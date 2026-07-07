@@ -6,7 +6,7 @@ namespace Sanet.Polygame.Texts;
 
 public static class FontsProvider
 {
-    static List<CustomSpriteFont> _fonts = new List<CustomSpriteFont>();
+    private static readonly List<CustomSpriteFont> _fonts = new List<CustomSpriteFont>();
 
         
 

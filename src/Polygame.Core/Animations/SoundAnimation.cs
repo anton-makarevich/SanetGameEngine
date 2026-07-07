@@ -12,13 +12,13 @@ namespace Sanet.Polygame.Animations;
 
 public class SoundAnimation:AnimationBase
 {
-    string _fileSound;
+    private readonly string _fileSound;
 
     #region Constructor
     public SoundAnimation(XElement xmldata)
     {
         _fileSound = xmldata.Attribute("Sound").Value;
-        PlayOnClick = xmldata.Attribute("PlayOnClick").Value.ToLower() == "true";
+        PlayOnClick = string.Equals(xmldata.Attribute("PlayOnClick").Value, "true", StringComparison.OrdinalIgnoreCase);
     }
 
     public SoundAnimation(string soundfile)

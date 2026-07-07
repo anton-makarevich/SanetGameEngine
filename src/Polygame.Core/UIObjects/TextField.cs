@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Sanet.Polygame.Animations;
@@ -21,8 +22,10 @@ public class TextField : GameObject2D
     #region Constructor
     public TextField(string asset, string font, Vector2 bgScale)
     {
-        _bg = new GameSpriteTouchable(asset);
-        _bg.Color = Microsoft.Xna.Framework.Color.Transparent;
+        _bg = new GameSpriteTouchable(asset)
+        {
+            Color = Microsoft.Xna.Framework.Color.Transparent
+        };
         _bg.Scale(bgScale);
         //_bg.CanDraw = false;
         _bg.OnClick += () =>
@@ -55,24 +58,26 @@ public class TextField : GameObject2D
     #endregion
 
     #region Fields
-    TextPrinter _text;
-    GameSpriteTouchable _bg;
-    GameSprite _cursor;
-    //Textfield  test
-    Guid _textFieldGuid;
 
-    Color _fontColor;
-    Color _bgColor = Color.LightGray;
+    private readonly TextPrinter _text;
+    private readonly GameSpriteTouchable _bg;
 
-    GameObjectOrientation _cursorType = GameObjectOrientation.Vertical;
+    private readonly GameSprite _cursor;
+    //Textfield test
+    private readonly Guid _textFieldGuid;
 
-    float _fontSize;
+    private Color _fontColor;
+    private Color _bgColor = Color.LightGray;
 
-    string _textString;
+    private GameObjectOrientation _cursorType = GameObjectOrientation.Vertical;
 
-    string _tipString;
+    private float _fontSize;
 
-    InputFormat _inputFormat;
+    private readonly StringBuilder _textBuilder = new(64);
+
+    private string _tipString;
+
+    private InputFormat _inputFormat;
     #endregion
 
     #region Properties
@@ -105,7 +110,7 @@ public class TextField : GameObject2D
         set => _fontSize = value;
     }
 
-    public string Text => _textString;
+    public string Text => _textBuilder.ToString();
 
     public int MaxChars { get; set; }
 
@@ -136,8 +141,12 @@ public class TextField : GameObject2D
 
     public string TextString
     {
-        private get => _textString;
-        set => _textString = value;
+        private get => _textBuilder.ToString();
+        set
+        {
+            _textBuilder.Clear();
+            _textBuilder.Append(value);
+        }
     }
 
     public Guid TextFieldGuid => _textFieldGuid;
@@ -161,9 +170,9 @@ public class TextField : GameObject2D
         //If password - replace chars with password char
         //TODO maybe need to show last char for few seconds
         //or alternatively have button to see typed password when pressed
-        if (!string.IsNullOrEmpty(_textString))
+        if (_textBuilder.Length > 0)
         {
-            _text.Text = (IsPassword) ? new String('*', _textString.Length) : _textString;
+            _text.Text = (IsPassword) ? new String('*', _textBuilder.Length) : _textBuilder.ToString();
             _text.TextColor = FontColor;
             _text.FontScale = FontSize;
                 
@@ -223,7 +232,7 @@ public class TextField : GameObject2D
             
     }
 
-    void AddChar(Guid id, char key)
+    private void AddChar(Guid id, char key)
     {
         if (_text.LineSize.X > _bg.LocalScale.X - 10)
             return;
@@ -244,17 +253,17 @@ public class TextField : GameObject2D
             else if (InputFormat == InputFormat.Capital)
                 keyString = keyString.ToUpper();
 
-            TextString += keyString;
+            _textBuilder.Append(keyString);
             if (TextChanged != null)
                 TextChanged();
         }
     }
 
-    void DeleteKey(Guid id)
+    private void DeleteKey(Guid id)
     {
-        if (_textFieldGuid == id && TextString.Length>0)
+        if (_textFieldGuid == id && _textBuilder.Length > 0)
         {
-            TextString = _text.Text.Remove(_text.Text.Length - 1);
+            _textBuilder.Length -= 1;
                 
             if (TextChanged != null)
                 TextChanged();
@@ -304,12 +313,13 @@ public class TextField : GameObject2D
 
     public void Clear()
     {
-        TextString = "";
+        _textBuilder.Clear();
     }
 
     public void OverrideText(string text)
     {
-        TextString = text;
+        _textBuilder.Clear();
+        _textBuilder.Append(text);
     }
         
     #endregion

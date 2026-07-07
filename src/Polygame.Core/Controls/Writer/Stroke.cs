@@ -9,7 +9,8 @@ public class Stroke : GameObject2D
 {
 
     #region Fields
-    GameSprite _finalStroke;
+
+    private GameSprite _finalStroke;
     #endregion
 
     #region Properties

@@ -21,13 +21,14 @@ static public class SceneManager
     #endregion
 
     #region Fields
-    static GameScene _newActiveScene;
 
-    static GameScene _modalScene;
+    private static GameScene _newActiveScene;
+
+    private static GameScene _modalScene;
     //history of visited scenes
-    private static Stack<string> _navigatedScenes = new Stack<string>();
+    private static readonly Stack<string> _navigatedScenes = new Stack<string>();
 
-    static SceneTranslationModes _translationMode = SceneTranslationModes.None;
+    private static SceneTranslationModes _translationMode = SceneTranslationModes.None;
     #endregion
 
 

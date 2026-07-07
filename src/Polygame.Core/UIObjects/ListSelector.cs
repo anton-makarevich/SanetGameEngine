@@ -31,13 +31,14 @@ public class ListSelector : GameObject2D
     #endregion
 
     #region Fields
-    List<GameSprite> _items;
 
-    BGPanel _background;
+    private List<GameSprite> _items;
 
-    ScrollingPanel _container;
+    private readonly BGPanel _background;
 
-    string _bgAsset;
+    private readonly ScrollingPanel _container;
+
+    private readonly string _bgAsset;
     #endregion
 
     #region Properties

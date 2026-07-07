@@ -8,7 +8,7 @@ namespace Sanet.Polygame.Localization;
 
 public static class LocalizerExtensions
 {
-    static ResourceModel _RModel;
+    private static ResourceModel _RModel;
         
     public static void Initialize(string[] locales)
     {

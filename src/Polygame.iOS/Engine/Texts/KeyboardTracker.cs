@@ -34,11 +34,12 @@ public class KeyboardTracker : IKeyboardTracker
     #endregion
 
     #region Fields
-    Guid _textFieldId;
 
-    UIViewController _vc;
-    UIViewController _controller;
-    UITextField _textBox;
+    private Guid _textFieldId;
+
+    private readonly UIViewController _vc;
+    private readonly UIViewController _controller;
+    private readonly UITextField _textBox;
 
     #endregion
 
@@ -51,7 +52,7 @@ public class KeyboardTracker : IKeyboardTracker
 
     #region Methods
 
-    void KeyboardManager_OnTextFieldActivationRequest(Guid id, InputFormat type)
+    private void KeyboardManager_OnTextFieldActivationRequest(Guid id, InputFormat type)
     {
         _textFieldId = id;
         _textBox.AutocapitalizationType = UITextAutocapitalizationType.None;
@@ -60,7 +61,7 @@ public class KeyboardTracker : IKeyboardTracker
         _textBox.BecomeFirstResponder();
     }
 
-    void KeyboardManager_OnTextFieldDeActivationRequest(Guid id)
+    private void KeyboardManager_OnTextFieldDeActivationRequest(Guid id)
     {
         if (_textFieldId == id)
         {
@@ -79,7 +80,7 @@ public class KeyboardTracker : IKeyboardTracker
         }
     }
 
-    UIKeyboardType ConvertType(InputFormat type)
+    private UIKeyboardType ConvertType(InputFormat type)
     {
         switch (type)
         {

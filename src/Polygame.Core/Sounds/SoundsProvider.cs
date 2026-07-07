@@ -18,23 +18,24 @@ public static class SoundsProvider
     #endregion
 
     #region Fields
-    static List<string> _soundFiles = new List<string>();
-    static List<string> _songFiles = new List<string>();
-    static Dictionary<string, SoundEffect> _soundEffects = new Dictionary<string, SoundEffect>();
 
-    static Dictionary<string, Song> _songs = new Dictionary<string, Song>();
+    private static readonly List<string> _soundFiles = new List<string>();
+    private static readonly List<string> _songFiles = new List<string>();
+    private static readonly Dictionary<string, SoundEffect> _soundEffects = new Dictionary<string, SoundEffect>();
 
-    static Dictionary<string, SoundEffectInstance> _playingSounds = new Dictionary<string, SoundEffectInstance>();
+    private static readonly Dictionary<string, Song> _songs = new Dictionary<string, Song>();
 
-    static Song _backgroundSong;
+    private static readonly Dictionary<string, SoundEffectInstance> _playingSounds = new Dictionary<string, SoundEffectInstance>();
 
-    static float _songVolume = 0.9f;
+    private static Song _backgroundSong;
 
-    static Queue<SoundEffectInstance> _sheduledSounds;
+    private static float _songVolume = 0.9f;
 
-    static bool _IsSoundEnabled = true;
-    static bool _IsMuted = false;
-    static bool _IsMusicEnabled = true;
+    private static Queue<SoundEffectInstance> _sheduledSounds;
+
+    private static bool _IsSoundEnabled = true;
+    private static bool _IsMuted = false;
+    private static bool _IsMusicEnabled = true;
     #endregion
 
     #region Properties
@@ -127,6 +128,7 @@ public static class SoundsProvider
     #region  Methods
     public static bool IsPlaying(string sound)
     {
+        sound = sound.ToLower();
         return _playingSounds.ContainsKey(sound) && _playingSounds[sound].State == SoundState.Playing;
     }
 
@@ -194,6 +196,7 @@ public static class SoundsProvider
     /// <param name="file"></param>
     public static void StopSound(string file)
     {
+        file = file.ToLower();
         if (_playingSounds.ContainsKey(file))
         {
             _playingSounds[file].Stop();
@@ -213,13 +216,14 @@ public static class SoundsProvider
             _sheduledSounds = new Queue<SoundEffectInstance>();
             foreach (var file in files)
             {
-                if (_soundEffects.ContainsKey(file))
+                var normalizedFile = file.ToLower();
+                if (_soundEffects.ContainsKey(normalizedFile))
                 {
-                    var seinstance = _soundEffects[file].CreateInstance();
-                    if (!_playingSounds.ContainsKey(file))
-                        _playingSounds.Add(file, seinstance);
+                    var seinstance = _soundEffects[normalizedFile].CreateInstance();
+                    if (!_playingSounds.ContainsKey(normalizedFile))
+                        _playingSounds.Add(normalizedFile, seinstance);
                     else
-                        _playingSounds[file] = seinstance;
+                        _playingSounds[normalizedFile] = seinstance;
                     _sheduledSounds.Enqueue(seinstance);
                 }
             }
@@ -282,7 +286,7 @@ public static class SoundsProvider
 
     }
 
-    static SoundEffect LoadSound(ContentManager contentManager, string sound)
+    private static SoundEffect LoadSound(ContentManager contentManager, string sound)
     {
         return contentManager.Load<SoundEffect>("Sounds/" + sound);
     }
@@ -294,7 +298,7 @@ public static class SoundsProvider
             
     }
 
-    static Song LoadSong(ContentManager contentManager, string song)
+    private static Song LoadSong(ContentManager contentManager, string song)
     {
         return contentManager.Load<Song>("Songs/" + song.ToLower());
     }

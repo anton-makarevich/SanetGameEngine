@@ -19,12 +19,12 @@ public class GameSprite : GameObject2D
     #region Fields
     private string _assetFile;
     private Texture2D _texture;
-    private List<Texture2D> _textures = new List<Texture2D>();
+    private readonly List<Texture2D> _textures = new List<Texture2D>();
     private int _currentTextureIndex = 0;
-    Color _color;
-    FrameAnimation _FrameAnimation;
+    private Color _color;
+    private FrameAnimation _FrameAnimation;
 
-    bool _applyColorToChildren = false;
+    private bool _applyColorToChildren = false;
         
     #endregion
 
@@ -54,12 +54,17 @@ public class GameSprite : GameObject2D
             _color = value;
             if (ApplyColorToChildren)
             {
-                var childrenSprites = Children.Where(f => f is GameSprite).Cast<GameSprite>().ToList();
-                foreach (var sprite in childrenSprites)
-                    sprite.Color = new Color(sprite.Color.R, sprite.Color.G, sprite.Color.B, value.A);
-                var childrenTexts = Children.Where(f => f is TextBlock).Cast<TextBlock>().ToList();
-                foreach (var text in childrenTexts)
-                    text.TextColor = new Color(text.TextColor.R, text.TextColor.G, text.TextColor.B, value.A);
+                for (var i = 0; i < Children.Count; i++)
+                {
+                    if (Children[i] is GameSprite sprite)
+                        sprite.Color = new Color(sprite.Color.R, sprite.Color.G, sprite.Color.B, value.A);
+                }
+
+                for (var i = 0; i < Children.Count; i++)
+                {
+                    if (Children[i] is TextBlock text)
+                        text.TextColor = new Color(text.TextColor.R, text.TextColor.G, text.TextColor.B, value.A);
+                }
             }
         }
     }
@@ -84,7 +89,7 @@ public class GameSprite : GameObject2D
         }
     }
 
-    void _FrameAnimation_Completed()
+    private void _FrameAnimation_Completed()
     {
         _currentTextureIndex = 0;
     }
