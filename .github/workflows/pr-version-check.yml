@@ -3,6 +3,8 @@ name: PR Version Check
 on:
   pull_request:
     branches: [main]
+    paths:
+      - 'src/**'
 
 jobs:
   check-version:
