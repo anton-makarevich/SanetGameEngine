@@ -7,6 +7,10 @@
         <Company>Anton Makarevich</Company>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageProjectUrl>https://github.com/anton-makarevich/SanetGameEngine</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/anton-makarevich/SanetGameEngine</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageId>$(AssemblyName)</PackageId>
     </PropertyGroup>
 
     <ItemGroup>

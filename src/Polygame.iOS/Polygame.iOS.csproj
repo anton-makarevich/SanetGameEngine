@@ -4,6 +4,7 @@
     <ProjectGuid>{38655429-A3FD-41B4-9DD5-8274C33C3985}</ProjectGuid>
     <RootNamespace>Sanet.Polygame.iOS</RootNamespace>
     <AssemblyName>Polygame.iOS</AssemblyName>
+    <Description>iOS platform implementation for the Polygame engine.</Description>
     <OutputType>Library</OutputType>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>

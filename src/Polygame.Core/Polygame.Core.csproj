@@ -3,6 +3,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>Sanet.Polygame</RootNamespace>
     <AssemblyName>Polygame.Core</AssemblyName>
+    <Description>Core library for the Polygame engine providing foundational game types, math, and interfaces.</Description>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>

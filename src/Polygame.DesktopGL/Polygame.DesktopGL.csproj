@@ -4,6 +4,7 @@
     <ProjectGuid>{3D64A8D5-CC83-4085-A9DF-9FEACA0612EC}</ProjectGuid>
     <RootNamespace>Sanet.Polygame.DesktopGL</RootNamespace>
     <AssemblyName>Polygame.DesktopGL</AssemblyName>
+    <Description>DesktopGL platform implementation for the Polygame engine targeting Windows, macOS, and Linux via OpenGL.</Description>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
