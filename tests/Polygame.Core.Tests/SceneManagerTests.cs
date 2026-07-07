@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Reflection;
 using Sanet.Polygame.Enums;
 using Sanet.Polygame.SceneManager;
 using Shouldly;
@@ -11,6 +13,10 @@ public class SceneManagerTests
     public SceneManagerTests()
     {
         SM.GameScenes.Clear();
+        var stack = typeof(SM).GetField("_navigatedScenes",
+            BindingFlags.Static | BindingFlags.NonPublic);
+        if (stack?.GetValue(null) is Stack<string> s)
+            s.Clear();
     }
 
     [Fact]
