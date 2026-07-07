@@ -4,6 +4,7 @@
     <ProjectGuid>{7258CAC6-3B79-4319-9819-3146963C04FB}</ProjectGuid>
     <RootNamespace>Sanet.Polygame.WindowsDX</RootNamespace>
     <AssemblyName>Polygame.WindowsDX</AssemblyName>
+    <Description>Windows DirectX platform implementation for the Polygame engine.</Description>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoWarn>$(NoWarn);CA1416;CA1422</NoWarn>

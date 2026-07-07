@@ -1,0 +1,50 @@
+name: WindowsDX
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+    paths:
+      - src/Polygame.WindowsDX/**
+      - src/Polygame.Core/**
+  pull_request:
+    paths:
+      - src/Polygame.WindowsDX/**
+      - src/Polygame.Core/**
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build src/Polygame.WindowsDX/Polygame.WindowsDX.csproj --configuration Release --no-restore
+
+      - name: Set VersionSuffix from tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}"
+          $suffix = $tag -replace '^v\d+\.\d+\.\d+-?', ''
+          if ($suffix -and $suffix -ne $tag) {
+            "VersionSuffix=$suffix" | Out-File -FilePath $env:GITHUB_ENV -Append
+          }
+
+      - name: Pack
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+        run: dotnet pack src/Polygame.WindowsDX/Polygame.WindowsDX.csproj --configuration Release --no-build --no-restore -o packages
+
+      - name: Push to NuGet
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+        run: dotnet nuget push packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
