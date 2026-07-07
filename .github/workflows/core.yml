@@ -26,7 +26,7 @@ jobs:
         run: dotnet restore src/Polygame.Core/Polygame.Core.csproj && dotnet restore tests/Polygame.Core.Tests/Polygame.Core.Tests.csproj
 
       - name: Build
-        run: dotnet build src/Polygame.Core/Polygame.Core.csproj --configuration Release --no-restore
+        run: dotnet build src/Polygame.Core/Polygame.Core.csproj --configuration Release --no-restore && dotnet build tests/Polygame.Core.Tests/Polygame.Core.Tests.csproj --configuration Release --no-restore
 
       - name: Test
         run: dotnet test tests/Polygame.Core.Tests/Polygame.Core.Tests.csproj --configuration Release --no-build
